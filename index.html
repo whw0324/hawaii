@@ -168,6 +168,40 @@
 
   .hotel-panel-head{ font-size:12px; color:rgba(27,42,46,0.55); margin-bottom:14px; line-height:1.6; }
 
+
+  .day-note{
+    margin-top:18px; padding:12px 14px; border-radius:14px;
+    background:rgba(14,94,119,0.08); border:1px solid rgba(14,94,119,0.15);
+    font-size:12.5px; color:rgba(27,42,46,0.75); line-height:1.6;
+  }
+  .day-note strong{ color:var(--ocean-deep); }
+  .day-note ul{ margin:6px 0 0; padding-left:18px; }
+
+  .reservation-section{
+    max-width:1120px; margin: 24px auto 0; padding: 0 24px 10px;
+  }
+  .reservation-card{
+    background:#fff; border:1px solid var(--line); border-radius:18px;
+    box-shadow:0 10px 30px rgba(11,61,78,0.08); padding:22px 24px;
+  }
+  .reservation-card h2{
+    font-family:'Fraunces', serif; font-size:24px; margin:0 0 8px; color:var(--ink);
+  }
+  .reservation-card p{
+    margin:0 0 14px; font-size:13px; color:rgba(27,42,46,0.6); line-height:1.6;
+  }
+  .reservation-grid{
+    display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap:12px;
+  }
+  @media (max-width: 900px){ .reservation-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px){ .reservation-grid{ grid-template-columns: 1fr; } }
+  .reservation-item{
+    border:1px solid var(--line); background:var(--sand); border-radius:14px; padding:14px;
+  }
+  .reservation-item .tag{ font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--lava); margin-bottom:6px; }
+  .reservation-item .name{ font-size:14px; font-weight:700; margin-bottom:4px; }
+  .reservation-item .desc{ font-size:12px; color:rgba(27,42,46,0.65); line-height:1.5; }
+
   footer{
     max-width:1120px; margin: 24px auto 0; padding: 0 24px;
     font-size:12px; color:rgba(27,42,46,0.45); text-align:center;
@@ -182,7 +216,7 @@
   <div class="hero-inner">
     <div class="eyebrow">ihouse小分队 · Trip Plan</div>
     <h1>夏威夷<br>Oʻahu &amp; Big Island</h1>
-    <p class="sub">从Waikiki出发环游欧胡岛东海岸，飞往大岛探索火山、黑沙滩与云海星空 —— 8天全览路线图，含每段车程、机场与住宿参考。</p>
+    <p class="sub">8月11日–18日，从Waikiki轻松适应，到欧胡岛东海岸、Kualoa Ranch、大岛火山、Mauna Kea云海星空、Kona浮潜与北岸自驾 —— 8天全览路线图。</p>
     <div class="view-switch" id="viewSwitch">
       <div class="view-btn active" data-view="day">📅 按天</div>
       <div class="view-btn" data-view="island">🏝️ 按岛</div>
@@ -201,6 +235,36 @@
   </div>
 </div>
 
+
+<section class="reservation-section">
+  <div class="reservation-card">
+    <h2>必须提前预约项目</h2>
+    <p>这些项目建议出发前就确认好时间，尤其是 Hanauma Bay 和 Manta Ray Night Snorkel。</p>
+    <div class="reservation-grid">
+      <div class="reservation-item">
+        <div class="tag">Day 2</div>
+        <div class="name">Diamond Head State Monument</div>
+        <div class="desc">建议预约早上时段，越早越凉快，也更适合接后面的东海岸路线。</div>
+      </div>
+      <div class="reservation-item">
+        <div class="tag">Day 2 / 备选 Day 3</div>
+        <div class="name">Hanauma Bay</div>
+        <div class="desc">预约难度较高，需要提前抢；如果 Day 2 没抢到，可考虑 Day 3 中午补上。</div>
+      </div>
+      <div class="reservation-item">
+        <div class="tag">Day 4</div>
+        <div class="name">Kualoa Ranch</div>
+        <div class="desc">Full day package、UTV、Movie Tour 都建议提前订，避免当天无位。</div>
+      </div>
+      <div class="reservation-item">
+        <div class="tag">Day 7</div>
+        <div class="name">Manta Ray Night Snorkel</div>
+        <div class="desc">大岛热门体验之一，建议提前预约晚上场次，并预留晚餐和整理装备时间。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>ihouse小分队之夏威夷 🏝️🌺 &nbsp;·&nbsp; 地图数据 © OpenStreetMap contributors &nbsp;·&nbsp; 车程数据参考 Google Maps / TravelMath / Rome2Rio 实测数据</footer>
 
 <script>
@@ -210,113 +274,162 @@ const DAY_COLORS = [COLORS.ocean, COLORS.lava, COLORS.palm, COLORS.plumeria, COL
 
 /* ============ itinerary data ============ */
 const DAYS = [
-  { island:'oahu', title:"Day 1 · 8月11日｜Waikiki 抵达 + 购物", sub:"中午到达，轻松适应，不安排徒步",
+  { island:'oahu', title:"Day 1 · 8月11日｜Waikiki + 购物 + 轻松适应", sub:"中午抵达，办理入住/寄存行李，轻松进入夏威夷节奏",
     stops:[
-      {time:"12:00", name:"Daniel K. Inouye 国际机场", note:"抵达", lat:21.3186623, lng:-157.9254018},
-      {time:"15:00–17:30", name:"Waikiki Beach", note:"游泳 / 晒太阳 / 看日落", lat:21.2793462, lng:-157.8291847},
-      {time:"18:00", name:"International Market Place", note:"购物", lat:21.2782454, lng:-157.8262949},
-      {time:"18:30", name:"Royal Hawaiian Center", note:"购物", lat:21.2793141, lng:-157.8297269},
+      {time:"12:00", name:"Daniel K. Inouye International Airport (HNL)", note:"抵达欧胡岛檀香山机场", lat:21.3186623, lng:-157.9254018},
+      {time:"13:30", name:"Waikiki 酒店 / 行李寄存", note:"前往酒店办理入住或寄存行李；具体坐标可之后换成酒店地址", lat:21.2793462, lng:-157.8291847},
+      {time:"15:00–17:30", name:"Waikiki Beach", note:"游泳、晒太阳、散步，也可以简单看海放松", lat:21.2793462, lng:-157.8291847},
+      {time:"18:00–19:30", name:"International Market Place", note:"Waikiki 附近购物、吃饭、逛街", lat:21.2782454, lng:-157.8262949},
+      {time:"19:30–21:00", name:"Royal Hawaiian Center", note:"继续购物；晚上尽量早点休息，为后面几天体力活动做准备", lat:21.2793141, lng:-157.8297269},
     ],
+    notes:["这一天不安排徒步，不把行程排满，重点是恢复体力和适应节奏。"],
     drive:[
-      {km:14.0, min:16, mode:'drive', real:true},
-      {km:0.3,  min:4,  mode:'walk',  real:false},
-      {km:0.35, min:5,  mode:'walk',  real:false},
+      {km:14.0, min:25, mode:'drive', real:false},
+      {km:0.2, min:3, mode:'walk', real:false},
+      {km:0.3, min:4, mode:'walk', real:false},
+      {km:0.35, min:5, mode:'walk', real:false},
     ]},
-  { island:'oahu', title:"Day 2 · 8月12日｜东海岸经典环线", sub:"最经典的一天：钻石山 + 恐龙湾 + 灯塔",
+
+  { island:'oahu', title:"Day 2 · 8月12日｜Diamond Head + Hanauma Bay + Halona + Ho‘omaluhia", sub:"欧胡岛东海岸经典路线；Diamond Head 和 Hanauma Bay 都需要提前预约",
     stops:[
-      {time:"06:30–08:30", name:"Diamond Head State Monument", note:"爬山，约1.6km往返", warn:"需提前2–7天预约", lat:21.2637984, lng:-157.8040943},
-      {time:"09:30–12:00", name:"Hanauma Bay", note:"浮潜，夏威夷最佳浮潜地之一", warn:"需提前预约", lat:21.2690358, lng:-157.6937919},
-      {time:"13:30", name:"Halona Blowhole", note:"打卡拍照", lat:21.2821575, lng:-157.676693},
-      {time:"14:00", name:"Makapuʻu Point Lighthouse Trail", note:"约1小时，难度低，风景极好", lat:21.303898, lng:-157.6535769},
+      {time:"06:30–08:30", name:"Diamond Head State Monument", note:"早上去比较凉快，山顶可以看到 Waikiki 和海岸线", warn:"需提前预约早上时段", lat:21.2637984, lng:-157.8040943},
+      {time:"09:30–12:00", name:"Hanauma Bay", note:"恐龙湾浮潜；出发前确认当天是否正常开放", warn:"预约难度较高，需要提前抢", lat:21.2690358, lng:-157.6937919},
+      {time:"12:30–13:15", name:"Hawaii Kai 附近简单午餐", note:"浮潜后简单吃饭、补水，不要安排太重", lat:21.280603, lng:-157.705543},
+      {time:"13:30–14:00", name:"Halona Blowhole", note:"天然海蚀喷泉景观，适合短暂停留拍照", lat:21.2821575, lng:-157.676693},
+      {time:"14:15–15:45", name:"Ho‘omaluhia Botanical Garden", note:"植物园打卡拍照，路线结束后返回 Waikiki", lat:21.3871682, lng:-157.8038244},
     ],
+    notes:["如果 Day 2 或 Day 3 哪天没有安排浮潜，就把 Makapuʻu Point Lighthouse Trail 加入那天。"],
     drive:[
-      {km:15.5, min:20, mode:'drive', real:true},
-      {km:2.5,  min:6,  mode:'drive', real:false},
-      {km:3.0,  min:6,  mode:'drive', real:false},
+      {km:15.5, min:20, mode:'drive', real:false},
+      {km:5.5, min:10, mode:'drive', real:false},
+      {km:5.0, min:8, mode:'drive', real:false},
+      {km:25.0, min:35, mode:'drive', real:false},
     ]},
-  { island:'oahu', title:"Day 3 · 8月13日｜体力挑战日", sub:"Koko Head + Tide Pool，最累的一天",
+
+  { island:'oahu', title:"Day 3 · 8月13日｜Koko Head + Lanikai / Kailua Beach", sub:"欧胡岛体力最强的一天；早上 Koko Head，下午海滩放松",
     stops:[
-      {time:"06:00–07:30", name:"Koko Head Crater Trail", note:"1000级台阶，很晒，必须早去", lat:21.2808697, lng:-157.6919389},
-      {time:"09:30", name:"Makapuʻu Tide Pools", note:"必须查潮汐", warn:"只有退潮才安全", lat:21.3040819, lng:-157.649111},
-      {time:"14:00", name:"Lanikai Beach", note:"强烈推荐！比Waikiki漂亮很多", lat:21.3925378, lng:-157.7151208},
+      {time:"05:30", name:"Waikiki 酒店出发", note:"提前出发，避开烈日和停车压力", lat:21.2793462, lng:-157.8291847},
+      {time:"06:00–07:30", name:"Koko Head Crater Trail", note:"长台阶著名，强度较高，一定要早去并带足水", lat:21.2808697, lng:-157.6919389},
+      {time:"08:00–09:00", name:"Hawaii Kai 早餐 / 休息 / 补水", note:"爬完 Koko Head 后先恢复体力", lat:21.280603, lng:-157.705543},
+      {time:"11:45–13:30", name:"Lanikai Beach / Kailua Beach", note:"午餐、看海、拍照和休息；Lanikai 风景更美，Kailua 更方便", lat:21.3925378, lng:-157.7151208},
+      {time:"16:00–17:00", name:"返回 Waikiki", note:"下午回酒店休息；为 Day 4 Kualoa Ranch 和飞大岛做准备", lat:21.2793462, lng:-157.8291847},
     ],
+    notes:["如果 Day 2 没抢到 Hanauma Bay，Day 3 中午可以改成补 Hanauma Bay 浮潜。", "Makapuʻu Tide Pools 只建议在退潮、浪况安全、体力允许时作为临时加点，不建议硬排。", "Day 2 / Day 3 哪天没有浮潜，就把 Makapuʻu Point Lighthouse Trail 加到那天。"],
     drive:[
-      {km:7.0,  min:12, mode:'drive', real:false},
-      {km:13.0, min:20, mode:'drive', real:false},
+      {km:22.0, min:28, mode:'drive', real:false},
+      {km:4.0, min:8, mode:'drive', real:false},
+      {km:21.0, min:30, mode:'drive', real:false},
+      {km:28.0, min:40, mode:'drive', real:false},
     ]},
-  { island:'oahu', title:"Day 4 · 8月14日｜Oʻahu 最后一天", sub:"古兰尼牧场 + 植物园 + 飞往大岛",
+
+  { island:'oahu', title:"Day 4 · 8月14日｜Kualoa Ranch 一日游 + 飞往 Hilo", sub:"完整玩 Kualoa Ranch full day，傍晚去 HNL 还车、候机，晚上飞 Hilo",
     stops:[
-      {time:"08:30–15:30", name:"Kualoa Ranch", note:"UTV 或 Movie Tour", warn:"必须提前预约", lat:21.5186627, lng:-157.8533464},
-      {time:"16:30", name:"Hoʻomaluhia Botanical Garden", note:"快速打卡，拍照圣地", lat:21.3871682, lng:-157.8038244},
-      {time:"18:30", name:"飞往 Hilo", note:"建议住Hilo，不建议住Kona", lat:21.3186623, lng:-157.9254018},
+      {time:"07:15", name:"Waikiki 出发", note:"早出发，预留路上时间", lat:21.2793462, lng:-157.8291847},
+      {time:"08:15", name:"Kualoa Ranch", note:"抵达古兰尼牧场，准备参加当天项目", lat:21.5186627, lng:-157.8533464},
+      {time:"08:30–15:30", name:"Kualoa Ranch Full Day / UTV / Movie Tour", note:"《侏罗纪公园》等电影取景地，山谷景色很震撼", warn:"必须提前预约", lat:21.5186627, lng:-157.8533464},
+      {time:"15:30–16:15", name:"Kualoa Ranch 纪念品店", note:"纪念品店、拍照、上厕所，整理离开", lat:21.5186627, lng:-157.8533464},
+      {time:"16:15–16:45", name:"Kualoa Regional Park / Chinaman’s Hat", note:"看海拍照，短暂停留即可", lat:21.510865, lng:-157.838037},
+      {time:"16:45–18:30", name:"开去 HNL 机场 + 吃饭", note:"重要转场时间，预留还车和晚餐", lat:21.3186623, lng:-157.9254018},
+      {time:"18:30–20:15", name:"HNL 还车 / 安检 / 候机", note:"还车、安检、候机", lat:21.3186623, lng:-157.9254018},
+      {time:"20:45", name:"HNL → ITO 飞往 Hilo", note:"晚上抵达大岛 Hilo", lat:19.7184326, lng:-155.0428745},
     ],
+    notes:["Ho‘omaluhia Botanical Garden 已经放到 Day 2，所以这一天不用再赶植物园。"],
     drive:[
-      {km:19.3, min:30, mode:'drive', real:true},
-      {km:22.5, min:38, mode:'drive', real:false},
+      {km:39.0, min:50, mode:'drive', real:false},
+      {km:0.1, min:2, mode:'walk', real:false},
+      {km:0.1, min:2, mode:'walk', real:false},
+      {km:2.0, min:5, mode:'drive', real:false},
+      {km:36.0, min:45, mode:'drive', real:false},
+      {km:0.5, min:5, mode:'walk', real:false},
+      {km:348.0, min:55, mode:'flight', real:false},
     ]},
-  { island:'bigisland', title:"Day 5 · 8月15日｜大岛最重要一天", sub:"Hilo + 黑沙滩 + 火山国家公园",
+
+  { island:'bigisland', title:"Day 5 · 8月15日｜Hilo + Rainbow Falls + 黑沙滩 + 火山国家公园", sub:"大岛东南线核心行程：Hilo 市区、瀑布、黑沙滩和 Hawaiʻi Volcanoes National Park",
     stops:[
-      {time:"08:00", name:"Hilo Farmer's Market", note:"最好早去", lat:19.7229776, lng:-155.084795},
-      {time:"09:30", name:"Rainbow Falls", note:"10分钟打卡，非常漂亮", lat:19.7192836, lng:-155.109422},
-      {time:"12:00", name:"Punaluʻu Black Sand Beach", note:"可能看到海龟", lat:19.1357578, lng:-155.5047867},
-      {time:"14:30–19:30", name:"Hawaiʻi Volcanoes National Park", note:"Thurston Lava Tube / Steam Vents / Crater Rim Drive", lat:19.4963669, lng:-155.4661859},
+      {time:"08:00–09:00", name:"Hilo Farmers Market", note:"适合买水果、早餐和当地纪念品，早上体验最好", lat:19.7229776, lng:-155.084795},
+      {time:"09:15–09:45", name:"Rainbow Falls", note:"离 Hilo 市区很近，适合快速打卡", lat:19.7192836, lng:-155.109422},
+      {time:"10:00–11:30", name:"前往 Punaluʻu Black Sand Beach", note:"从 Hilo 开车前往黑沙滩", lat:19.1357578, lng:-155.5047867},
+      {time:"11:30–12:30", name:"Punaluʻu Black Sand Beach", note:"黑色火山沙滩，有机会看到海龟；保持距离不要打扰", lat:19.1357578, lng:-155.5047867},
+      {time:"12:30–13:30", name:"午餐 / 路上补给", note:"简单吃饭、补水，准备进火山国家公园", lat:19.05907, lng:-155.58804},
+      {time:"13:30–18:30", name:"Hawaiʻi Volcanoes National Park", note:"Thurston Lava Tube、Steam Vents、Crater Rim Drive、Kīlauea Overlook", lat:19.4287416, lng:-155.25836},
+      {time:"18:30–19:30", name:"返回 Hilo", note:"晚上继续住 Hilo；不建议太晚离开火山公园", lat:19.7229776, lng:-155.084795},
     ],
+    notes:["这一天建议不要太晚离开火山公园，晚上开回 Hilo 会更轻松。"],
     drive:[
-      {km:3.0,  min:8,  mode:'drive', real:false},
-      {km:93.0, min:83, mode:'drive', real:true},
-      {km:47.0, min:43, mode:'drive', real:true},
-    ]},
-  { island:'bigisland', title:"Day 6 · 8月16日｜Hilo → Mauna Kea → Kona", sub:"这一天专门做转场和云海，最合理",
-    stops:[
-      {time:"09:30–11:00", name:"Hilo 酒店退房", note:"轻松吃早餐、补给、加满油；行李会放车上，贵重物品不要外露", lat:19.7284039, lng:-155.066467},
-      {time:"11:00–13:00", name:"Liliʻuokalani Gardens / Coconut Island", note:"Hilo附近轻松景点二选一，也可以直接休息，不要太累", lat:19.7280832, lng:-155.0676248},
-      {time:"13:30 出发｜15:00–19:15", name:"Maunakea Visitor Information Station", note:"先适应海拔、上厕所、换厚衣服；16:30–19:15看云海、日落、星空", lat:19.7592729, lng:-155.4561238},
-      {time:"19:30–21:00 / 21:30", name:"Kona 酒店入住", note:"下山后开去Kona酒店入住；晚上不要安排太多活动", lat:19.641164, lng:-155.9961971},
-    ],
-    drive:[
-      {km:1.0,  min:5,  mode:'drive', real:false},
-      {km:69.0, min:70, mode:'drive', real:false},
+      {km:3.0, min:8, mode:'drive', real:false},
       {km:93.0, min:90, mode:'drive', real:false},
+      {km:0.1, min:2, mode:'walk', real:false},
+      {km:16.0, min:20, mode:'drive', real:false},
+      {km:50.0, min:45, mode:'drive', real:false},
+      {km:45.0, min:50, mode:'drive', real:false},
     ]},
-  { island:'bigisland', title:"Day 7 · 8月17日｜Kona 浮潜 + 魔鬼鱼夜潜", sub:"前一天已经完成 Mauna Kea，不会和魔鬼鱼夜潜冲突",
+
+  { island:'bigisland', title:"Day 6 · 8月16日｜Hilo → Mauna Kea → Kona", sub:"大岛转场日：从 Hilo 出发上 Mauna Kea 看云海、日落和星空，再下山去 Kona 入住",
     stops:[
-      {time:"09:00–11:30", name:"Kahaluʻu Beach Park", note:"适合新手，鱼多，水相对浅", lat:19.5792662, lng:-155.9666712},
-      {time:"12:00–15:30", name:"午餐 + 回酒店休息", note:"前一天 Mauna Kea 会比较累，这天下午一定留休息时间", lat:19.641164, lng:-155.9961971},
-      {time:"下午", name:"Kua Bay / Maniniʻowali Beach", note:"下午轻松海滩时间，注意防晒和停车", lat:19.810672, lng:-156.020934},
-      {time:"20:30–22:30", name:"Manta Ray Night Snorkel", note:"大岛最值得体验项目之一", warn:"必须提前预约", lat:19.6478856, lng:-155.9982629},
+      {time:"09:30–11:00", name:"Hilo 酒店退房 / 早餐 / 补给 / 加满油", note:"轻松退房，准备转场；行李会放在车上", lat:19.7284039, lng:-155.066467},
+      {time:"11:00–13:00", name:"Liliʻuokalani Gardens / Coconut Island", note:"Hilo 附近轻松活动，也可以直接休息，不要太累", lat:19.7295945, lng:-155.064893},
+      {time:"13:30", name:"从 Hilo 出发去 Mauna Kea VIS", note:"从 Hilo 去 VIS 通常比从 Kona 更顺路", lat:19.7184326, lng:-155.0428745},
+      {time:"15:00–16:30", name:"Mauna Kea Visitor Information Station", note:"先适应海拔、上厕所、换厚衣服", lat:19.7592729, lng:-155.4561238},
+      {time:"16:30–19:15", name:"Mauna Kea 云海 / 日落 / 星空", note:"重点体验云海、日落和星空；注意保暖", lat:19.7592729, lng:-155.4561238},
+      {time:"19:30–21:00 / 21:30", name:"下山开往 Kona 酒店", note:"入住 Kona；晚上注意安全驾驶", lat:19.639994, lng:-155.996926},
     ],
+    notes:["这天行李会放在车上，贵重物品不要露在外面，也不要长时间把车停在偏僻地点。"],
     drive:[
-      {km:8.0,  min:15, mode:'drive', real:false},
-      {km:25.0, min:30, mode:'drive', real:false},
-      {km:28.0, min:35, mode:'drive', real:false},
+      {km:1.0, min:5, mode:'drive', real:false},
+      {km:4.0, min:8, mode:'drive', real:false},
+      {km:70.0, min:75, mode:'drive', real:false},
+      {km:0.1, min:2, mode:'walk', real:false},
+      {km:90.0, min:90, mode:'drive', real:false},
     ]},
-  { island:'bigisland', title:"Day 8 · 8月18日｜北岸自驾 + Kohala Mountain Road + Pololū Valley", sub:"晚上 20:45 KOA 飞机离开，白天走北岸风景线",
+
+  { island:'bigisland', title:"Day 7 · 8月17日｜Kona 浮潜 + Kua Bay + Manta Ray Night Snorkel", sub:"白天轻松浮潜和看海，晚上参加大岛经典魔鬼鱼夜潜",
     stops:[
-      {time:"09:00–09:30", name:"Kona / Waikoloa 酒店退房", note:"行李放车里；贵重物品不要放在明显位置", lat:19.641164, lng:-155.9961971},
-      {time:"09:30–10:30", name:"Waimea", note:"从Kona / Waikoloa开往Waimea，正式进入北岸路线", lat:20.022655, lng:-155.672077},
-      {time:"10:30–11:30", name:"Kohala Mountain Road / Hwy 250", note:"风景自驾路段，天气好时很漂亮", lat:20.096132, lng:-155.739491},
-      {time:"11:30–12:45", name:"Hawi / Kapaʻau", note:"午餐 + 小镇逛逛", lat:20.241801, lng:-155.832792},
-      {time:"12:45–13:00", name:"King Kamehameha Statue", note:"快速打卡拍照", lat:20.236198, lng:-155.803398},
-      {time:"13:20–14:10", name:"Pololū Valley Lookout", note:"北岸压轴观景点；如果只看lookout不下谷，时间比较稳", lat:20.203446, lng:-155.733797},
-      {time:"14:10–15:20", name:"Hwy 270 北岸海岸线回程", note:"沿北岸海岸线往回开，风景好但不要停太偏僻的地方", lat:20.118066, lng:-155.824583},
-      {time:"15:30–16:00", name:"Lapakahi State Historical Park", note:"可跳过；时间紧就直接去下一站", lat:20.158694, lng:-155.859049},
-      {time:"16:15–17:00", name:"Hāpuna Beach / Puʻukoholā Heiau", note:"二选一：想看海选Hāpuna Beach，想看历史遗址选Puʻukoholā Heiau", lat:19.993207, lng:-155.824758},
-      {time:"17:00–18:00", name:"晚餐 + 加油 + 整理行李", note:"建议靠近KOA或回机场路线上解决，避免最后赶车", lat:19.736916, lng:-156.0429246},
-      {time:"18:15–18:30｜20:45", name:"KOA 还车 / 飞机离开", note:"18:15–18:30还车；20:45飞机离开", lat:19.736916, lng:-156.0429246},
+      {time:"09:00–11:00", name:"Kahaluʻu Beach Park", note:"水相对浅、鱼多，适合新手浮潜", lat:19.5792662, lng:-155.9666712},
+      {time:"11:00–12:00", name:"回 Kona 酒店冲洗 / 换衣服", note:"浮潜后先回酒店整理", lat:19.639994, lng:-155.996926},
+      {time:"12:00–15:00", name:"午餐 + 午休", note:"前一天 Mauna Kea 会比较累，这段时间建议充分休息", lat:19.639994, lng:-155.996926},
+      {time:"15:30–17:15", name:"Kua Bay", note:"看海、拍照、简单下水；晚上还有夜潜，不建议玩太累", lat:19.810186, lng:-156.003755},
+      {time:"17:30–19:00", name:"晚餐 + 回酒店整理装备", note:"为 Manta Ray Night Snorkel 做准备", lat:19.639994, lng:-155.996926},
+      {time:"20:00–22:30", name:"Manta Ray Night Snorkel", note:"大岛最值得体验的项目之一", warn:"必须提前预约", lat:19.6478856, lng:-155.9982629},
     ],
+    notes:["这一天水上活动较多，建议控制体力。Kua Bay 可以只拍照和轻松看海，不一定要正式下水。"],
+    drive:[
+      {km:8.0, min:15, mode:'drive', real:false},
+      {km:0.1, min:2, mode:'walk', real:false},
+      {km:27.0, min:30, mode:'drive', real:false},
+      {km:27.0, min:30, mode:'drive', real:false},
+      {km:3.0, min:10, mode:'drive', real:false},
+    ]},
+
+  { island:'bigisland', title:"Day 8 · 8月18日｜北岸自驾 + Kohala Mountain Road + Pololū Valley Lookout", sub:"最后一天北岸自驾，下午回机场还车，20:45 飞机离开",
+    stops:[
+      {time:"09:00–09:30", name:"Kona 酒店退房", note:"行李放车里，贵重物品不要露在外面", lat:19.639994, lng:-155.996926},
+      {time:"09:30–10:30", name:"Kona / Waikoloa → Waimea", note:"北上前往 Waimea", lat:20.023708, lng:-155.671731},
+      {time:"10:30–11:30", name:"Kohala Mountain Road / Hwy 250", note:"山路自驾，看大岛北部牧场和山景", lat:20.103255, lng:-155.76028},
+      {time:"11:30–12:45", name:"Hawi / Kapaʻau", note:"午餐 + 小镇逛逛", lat:20.237571, lng:-155.82916},
+      {time:"12:45–13:00", name:"King Kamehameha Statue", note:"短暂停留打卡", lat:20.230697, lng:-155.801889},
+      {time:"13:20–14:10", name:"Pololū Valley Lookout", note:"北岸压轴观景点；不下谷就轻松很多", lat:20.203793, lng:-155.733097},
+      {time:"14:10–15:20", name:"Hwy 270 北岸海岸线回程", note:"沿北岸海岸线往回开，边走边看风景", lat:20.13146, lng:-155.821734},
+      {time:"15:30–16:00", name:"Lapakahi State Historical Park", note:"可跳过；时间够再短暂停留", lat:20.166351, lng:-155.89502},
+      {time:"16:15–17:00", name:"Hāpuna Beach / Puʻukoholā Heiau", note:"二选一，可跳过；根据体力和时间决定", lat:19.99303, lng:-155.824627},
+      {time:"17:00–18:00", name:"晚餐 + 加油 + 整理行李", note:"靠近 KOA 机场解决晚餐和加油", lat:19.736916, lng:-156.042925},
+      {time:"18:15–18:30", name:"KOA Rental Car Return", note:"还车，准备候机", lat:19.736916, lng:-156.042925},
+      {time:"20:45", name:"KOA 飞机离开", note:"结束夏威夷行程", lat:19.736916, lng:-156.042925},
+    ],
+    notes:["Lapakahi、Hāpuna Beach、Puʻukoholā Heiau 都是可跳过项目；如果前面玩得久，优先保证晚餐、加油、还车和候机时间。"],
     drive:[
       {km:64.0, min:60, mode:'drive', real:false},
-      {km:23.0, min:30, mode:'drive', real:false},
-      {km:21.0, min:30, mode:'drive', real:false},
-      {km:3.3,  min:6,  mode:'drive', real:false},
-      {km:17.0, min:20, mode:'drive', real:false},
-      {km:29.0, min:45, mode:'drive', real:false},
-      {km:6.0,  min:10, mode:'drive', real:false},
-      {km:23.0, min:25, mode:'drive', real:false},
-      {km:33.0, min:35, mode:'drive', real:false},
-      {km:0.2,  min:2,  mode:'drive', real:false},
+      {km:30.0, min:45, mode:'drive', real:false},
+      {km:16.0, min:20, mode:'drive', real:false},
+      {km:4.0, min:6, mode:'drive', real:false},
+      {km:15.0, min:20, mode:'drive', real:false},
+      {km:28.0, min:70, mode:'drive', real:false},
+      {km:7.0, min:10, mode:'drive', real:false},
+      {km:23.0, min:20, mode:'drive', real:false},
+      {km:45.0, min:45, mode:'drive', real:false},
+      {km:1.0, min:5, mode:'drive', real:false},
+      {km:0.1, min:2, mode:'walk', real:false},
     ]},
-]
+];
 
 /* ============ airports ============ */
 const AIRPORTS = {
@@ -371,6 +484,9 @@ const HOTELS = {
 
 /* ============ formatting helpers ============ */
 function fmtSeg(d){
+  if(d.mode === 'flight'){
+    return `<span class="car">✈️</span><span>${d.km} km · 约 ${d.min} 分钟 飞行 / 转场</span>`;
+  }
   if(d.mode === 'walk'){
     return `<span class="car">🚶</span><span>${d.km} km · 约 ${d.min} 分钟（步行）</span>`;
   }
@@ -483,6 +599,13 @@ function renderDay(i){
       list.appendChild(seg);
     }
   });
+
+  if(day.notes && day.notes.length){
+    const noteBox = document.createElement('div');
+    noteBox.className = 'day-note';
+    noteBox.innerHTML = `<strong>当天提醒</strong><ul>${day.notes.map(n=>`<li>${n}</li>`).join('')}</ul>`;
+    list.appendChild(noteBox);
+  }
 
   if(bounds.length) map.fitBounds(bounds, { padding:[40,40], maxZoom:12 });
   drawDayRoutes(i, day, color);
