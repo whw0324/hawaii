@@ -34,7 +34,7 @@
     position:relative;
     background: linear-gradient(160deg, var(--ocean-deep) 0%, var(--ocean) 55%, #147a8f 100%);
     color:var(--sand);
-    padding: 56px 32px 72px;
+    padding: 48px 32px 64px;
     overflow:hidden;
   }
   .hero::after{
@@ -45,7 +45,7 @@
       radial-gradient(circle at 10% 90%, rgba(217,75,43,0.25), transparent 45%);
     pointer-events:none;
   }
-  .hero-inner{ position:relative; max-width:1080px; margin:0 auto; }
+  .hero-inner{ position:relative; max-width:1120px; margin:0 auto; }
   .eyebrow{
     font-size:13px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--plumeria); font-weight:600; margin-bottom:14px;
@@ -53,108 +53,123 @@
   h1{
     font-family:'Fraunces', serif;
     font-weight:700;
-    font-size: clamp(34px, 6vw, 64px);
+    font-size: clamp(32px, 5.5vw, 58px);
     line-height:1.03;
-    margin:0 0 18px;
+    margin:0 0 16px;
     letter-spacing:-0.01em;
   }
   .hero p.sub{
-    max-width:560px; font-size:16px; line-height:1.6; color:rgba(246,239,225,0.85); margin:0;
+    max-width:620px; font-size:15px; line-height:1.6; color:rgba(246,239,225,0.85); margin:0;
   }
-  .hero-stats{
-    display:flex; gap:28px; margin-top:36px; flex-wrap:wrap;
-  }
-  .stat{ }
-  .stat .n{ font-family:'Fraunces', serif; font-size:28px; font-weight:600; color:var(--sand); }
-  .stat .l{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:rgba(246,239,225,0.65); }
 
-  /* ---------- LAYOUT ---------- */
-  .wrap{ max-width:1080px; margin: -40px auto 0; padding: 0 24px 80px; position:relative; }
+  .view-switch{ display:flex; gap:8px; margin-top:28px; }
+  .view-btn{
+    padding:10px 20px; border-radius:999px; font-size:13.5px; font-weight:600;
+    cursor:pointer; border:1.5px solid rgba(246,239,225,0.35);
+    color:rgba(246,239,225,0.85); background:rgba(255,255,255,0.06);
+    transition: all .15s ease;
+  }
+  .view-btn.active{ background: var(--plumeria); border-color:var(--plumeria); color:var(--ocean-deep); }
+
+  .wrap{ max-width:1120px; margin: -36px auto 0; padding: 0 24px 80px; position:relative; }
 
   .panel{
-    background:#fff;
-    border-radius:20px;
+    background:#fff; border-radius:20px;
     box-shadow: 0 20px 60px rgba(11,61,78,0.18);
-    overflow:hidden;
-    border:1px solid var(--line);
+    overflow:hidden; border:1px solid var(--line);
   }
 
-  /* day tabs */
-  .tabs{
-    display:flex; overflow-x:auto; gap:4px; padding:14px 14px 0;
-    scrollbar-width:none;
-  }
+  .tabs{ display:flex; overflow-x:auto; gap:4px; padding:14px 14px 0; scrollbar-width:none; }
   .tabs::-webkit-scrollbar{display:none;}
   .tab{
-    flex:0 0 auto;
-    padding:10px 16px;
-    border-radius:10px 10px 0 0;
-    font-size:13px; font-weight:600;
-    cursor:pointer;
-    color:rgba(27,42,46,0.5);
-    border:1px solid transparent;
-    white-space:nowrap;
-    transition: color .15s ease;
+    flex:0 0 auto; padding:10px 16px; border-radius:10px 10px 0 0;
+    font-size:13px; font-weight:600; cursor:pointer; color:rgba(27,42,46,0.5);
+    border:1px solid transparent; white-space:nowrap; transition: color .15s ease;
   }
   .tab .d{ font-family:'Fraunces', serif; font-weight:700; margin-right:6px; }
-  .tab.active{
-    color:var(--ink);
-    background:var(--sand);
-    border-color:var(--line);
-    border-bottom-color:var(--sand);
-  }
+  .tab.active{ color:var(--ink); background:var(--sand); border-color:var(--line); border-bottom-color:var(--sand); }
 
-  .content{
-    display:grid;
-    grid-template-columns: 1.1fr 1fr;
-    background:var(--sand);
+  .toolbar{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding: 10px 20px; background:var(--sand); border-bottom:1px solid var(--line); flex-wrap:wrap;
   }
-  @media (max-width: 820px){
-    .content{ grid-template-columns:1fr; }
-  }
+  .legend{ display:flex; gap:14px; flex-wrap:wrap; font-size:12px; color:rgba(27,42,46,0.65); }
+  .legend .dot{ display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:5px; vertical-align:middle; }
 
-  #map{ width:100%; height: 560px; }
-  @media (max-width: 820px){ #map{ height:360px; } }
+  .hotel-toggle{
+    display:flex; align-items:center; gap:8px; cursor:pointer; user-select:none;
+    font-size:13px; font-weight:600; color:var(--ink);
+    background:#fff; border:1.5px solid var(--line); padding:7px 14px; border-radius:999px;
+    transition: all .15s ease;
+  }
+  .hotel-toggle.on{ background:var(--ocean-deep); color:#fff; border-color:var(--ocean-deep); }
+  .hotel-toggle .sw{ width:30px; height:16px; border-radius:999px; background:rgba(0,0,0,0.15); position:relative; flex:0 0 auto; }
+  .hotel-toggle .sw::after{
+    content:""; position:absolute; top:2px; left:2px; width:12px; height:12px; border-radius:50%;
+    background:#fff; transition: left .15s ease;
+  }
+  .hotel-toggle.on .sw{ background:rgba(255,255,255,0.3); }
+  .hotel-toggle.on .sw::after{ left:16px; }
 
-  .day-info{
-    padding: 28px 28px 32px;
-  }
-  .day-title{
-    font-family:'Fraunces', serif;
-    font-size:24px; font-weight:700; margin:0 0 4px;
-  }
-  .day-sub{
-    font-size:13px; color:rgba(27,42,46,0.55); margin:0 0 20px;
-  }
+  .content{ display:grid; grid-template-columns: 1.05fr 1fr; background:var(--sand); }
+  @media (max-width: 820px){ .content{ grid-template-columns:1fr; } }
+
+  #map{ width:100%; height: 600px; }
+  @media (max-width: 820px){ #map{ height:380px; } }
+
+  .day-info{ padding: 24px 26px 30px; max-height:600px; overflow-y:auto; }
+  @media (max-width: 820px){ .day-info{ max-height:none; } }
+
+  .day-title{ font-family:'Fraunces', serif; font-size:22px; font-weight:700; margin:0 0 4px; }
+  .day-sub{ font-size:12.5px; color:rgba(27,42,46,0.55); margin:0 0 16px; }
+  .section-head{ display:flex; align-items:center; gap:8px; margin: 18px 0 10px; }
+  .section-head:first-child{ margin-top:0; }
+  .section-head .bar{ width:4px; height:16px; border-radius:2px; }
+  .section-head .t{ font-family:'Fraunces', serif; font-weight:700; font-size:15px; }
+
   .stop{
-    display:grid;
-    grid-template-columns: 28px 1fr;
-    gap:12px;
-    padding: 14px 0;
-    border-top:1px solid var(--line);
+    display:grid; grid-template-columns: 28px 1fr; gap:12px;
+    padding: 12px 0; border-top:1px solid var(--line); cursor:pointer;
   }
   .stop:first-of-type{ border-top:none; }
   .stop .dot{
-    width:28px; height:28px; border-radius:50%;
-    background:var(--ocean);
-    color:#fff; font-size:12px; font-weight:700;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Space Grotesk', sans-serif;
+    width:28px; height:28px; border-radius:50%; color:#fff; font-size:12px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk', sans-serif;
   }
-  .stop .body .time{
-    font-size:12px; font-weight:600; color:var(--lava);
-    text-transform:uppercase; letter-spacing:.04em;
-  }
-  .stop .body .name{ font-size:15px; font-weight:600; margin:2px 0 3px; }
-  .stop .body .note{ font-size:13px; color:rgba(27,42,46,0.65); line-height:1.5; }
+  .stop .body .time{ font-size:12px; font-weight:600; color:var(--lava); text-transform:uppercase; letter-spacing:.04em; }
+  .stop .body .name{ font-size:14.5px; font-weight:600; margin:2px 0 3px; }
+  .stop .body .note{ font-size:12.5px; color:rgba(27,42,46,0.65); line-height:1.5; }
   .warn{
     display:inline-block; margin-top:4px; font-size:11px; font-weight:600;
-    color:var(--lava); background:rgba(217,75,43,0.1);
-    padding:2px 8px; border-radius:20px;
+    color:var(--lava); background:rgba(217,75,43,0.1); padding:2px 8px; border-radius:20px;
   }
 
+  .drive-seg{ display:flex; align-items:center; gap:8px; padding: 6px 0 6px 40px; font-size:11.5px; color:rgba(27,42,46,0.55); }
+  .drive-seg .car{ font-size:13px; }
+  .drive-seg.est{ font-style:italic; }
+
+  .hotel-card{ display:grid; grid-template-columns: 26px 1fr; gap:12px; padding:12px 0; border-top:1px solid var(--line); cursor:pointer; }
+  .hotel-card:first-of-type{ border-top:none; }
+  .hotel-card .hnum{
+    width:26px; height:26px; border-radius:8px; background:var(--ocean-deep); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .hotel-card .hname{ font-size:14px; font-weight:700; margin-bottom:2px; }
+  .hotel-card .hprice{ font-size:12px; color:var(--lava); font-weight:600; margin-bottom:3px; }
+  .hotel-card .hnote{ font-size:12px; color:rgba(27,42,46,0.65); line-height:1.5; margin-bottom:6px; }
+  .hotel-links{ display:flex; gap:10px; }
+  .hotel-links a{
+    font-size:11.5px; font-weight:600; color:var(--ocean); text-decoration:none;
+    border:1px solid var(--line); padding:4px 10px; border-radius:999px;
+  }
+  .hotel-links a:hover{ background:var(--sand); }
+  .hotel-links a.book{ color:var(--lava); }
+
+  .hotel-panel-head{ font-size:12px; color:rgba(27,42,46,0.55); margin-bottom:14px; line-height:1.6; }
+
   footer{
-    max-width:1080px; margin: 24px auto 0; padding: 0 24px;
+    max-width:1120px; margin: 24px auto 0; padding: 0 24px;
     font-size:12px; color:rgba(27,42,46,0.45); text-align:center;
   }
 
@@ -167,11 +182,10 @@
   <div class="hero-inner">
     <div class="eyebrow">ihouse小分队 · Trip Plan</div>
     <h1>夏威夷<br>Oʻahu &amp; Big Island</h1>
-    <p class="sub">从Waikiki出发环游欧胡岛东海岸，飞往大岛探索火山、黑沙滩、Mauna Kea云海星空与Kona北岸 —— 8天全览路线图。</p>
-    <div class="hero-stats">
-      <div class="stat"><div class="n">8</div><div class="l">Days</div></div>
-      <div class="stat"><div class="n">2</div><div class="l">Islands</div></div>
-      <div class="stat"><div class="n">40</div><div class="l">Stops</div></div>
+    <p class="sub">从Waikiki出发环游欧胡岛东海岸，飞往大岛探索火山、黑沙滩与云海星空 —— 8天全览路线图，含每段车程、机场与住宿参考。</p>
+    <div class="view-switch" id="viewSwitch">
+      <div class="view-btn active" data-view="day">📅 按天</div>
+      <div class="view-btn" data-view="island">🏝️ 按岛</div>
     </div>
   </div>
 </div>
@@ -179,239 +193,524 @@
 <div class="wrap">
   <div class="panel">
     <div class="tabs" id="tabs"></div>
+    <div class="toolbar" id="toolbar"></div>
     <div class="content">
       <div id="map"></div>
-      <div class="day-info">
-        <div class="day-title" id="dayTitle"></div>
-        <div class="day-sub" id="daySub"></div>
-        <div id="stopsList"></div>
-      </div>
+      <div class="day-info" id="dayInfo"></div>
     </div>
   </div>
 </div>
 
-<footer>ihouse小分队之夏威夷 8天路线 🏝️🌺 &nbsp;·&nbsp; 地图数据 © OpenStreetMap contributors</footer>
+<footer>ihouse小分队之夏威夷 🏝️🌺 &nbsp;·&nbsp; 地图数据 © OpenStreetMap contributors &nbsp;·&nbsp; 车程数据参考 Google Maps / TravelMath / Rome2Rio 实测数据</footer>
 
 <script>
+/* ============ palette ============ */
+const COLORS = { ocean:'#0E5E77', oceanDeep:'#0B3D4E', lava:'#D94B2B', palm:'#2F6B4F', plumeria:'#F5B942' };
+const DAY_COLORS = [COLORS.ocean, COLORS.lava, COLORS.palm, COLORS.plumeria, COLORS.oceanDeep, COLORS.lava, COLORS.palm, COLORS.ocean];
+
+/* ============ itinerary data ============ */
 const DAYS = [
-  {
-    date: "8月11日",
-    title: "Day 1 · 8月11日 · Waikiki 抵达 + 购物",
-    sub: "中午到达，轻松适应，不安排徒步",
-    color: "#0E5E77",
-    stops: [
-      {time:"12:00", name:"Daniel K. Inouye 国际机场", note:"抵达Oʻahu，取车 / 打车前往Waikiki", lat:21.3186623, lng:-157.9254018},
+  { island:'oahu', title:"Day 1 · 8月11日｜Waikiki 抵达 + 购物", sub:"中午到达，轻松适应，不安排徒步",
+    stops:[
+      {time:"12:00", name:"Daniel K. Inouye 国际机场", note:"抵达", lat:21.3186623, lng:-157.9254018},
       {time:"15:00–17:30", name:"Waikiki Beach", note:"游泳 / 晒太阳 / 看日落", lat:21.2793462, lng:-157.8291847},
       {time:"18:00", name:"International Market Place", note:"购物", lat:21.2782454, lng:-157.8262949},
-      {time:"18:30", name:"Royal Hawaiian Center", note:"购物 / 晚餐", lat:21.2793141, lng:-157.8297269}
-    ]
-  },
-  {
-    date: "8月12日",
-    title: "Day 2 · 8月12日 · 东海岸经典环线",
-    sub: "最经典的一天：钻石山 + 恐龙湾 + 灯塔",
-    color: "#D94B2B",
-    stops: [
-      {time:"06:30–08:30", name:"Diamond Head State Monument", note:"爬山，约1.6km往返", lat:21.2637984, lng:-157.8040943, warn:"需提前2–7天预约"},
-      {time:"09:30–12:00", name:"Hanauma Bay", note:"浮潜，夏威夷最佳浮潜地之一", lat:21.2690358, lng:-157.6937919, warn:"需提前预约"},
+      {time:"18:30", name:"Royal Hawaiian Center", note:"购物", lat:21.2793141, lng:-157.8297269},
+    ],
+    drive:[
+      {km:14.0, min:16, mode:'drive', real:true},
+      {km:0.3,  min:4,  mode:'walk',  real:false},
+      {km:0.35, min:5,  mode:'walk',  real:false},
+    ]},
+  { island:'oahu', title:"Day 2 · 8月12日｜东海岸经典环线", sub:"最经典的一天：钻石山 + 恐龙湾 + 灯塔",
+    stops:[
+      {time:"06:30–08:30", name:"Diamond Head State Monument", note:"爬山，约1.6km往返", warn:"需提前2–7天预约", lat:21.2637984, lng:-157.8040943},
+      {time:"09:30–12:00", name:"Hanauma Bay", note:"浮潜，夏威夷最佳浮潜地之一", warn:"需提前预约", lat:21.2690358, lng:-157.6937919},
       {time:"13:30", name:"Halona Blowhole", note:"打卡拍照", lat:21.2821575, lng:-157.676693},
-      {time:"14:00", name:"Makapuʻu Point Lighthouse Trail", note:"约1小时，难度低，风景极好", lat:21.303898, lng:-157.6535769}
-    ]
-  },
-  {
-    date: "8月13日",
-    title: "Day 3 · 8月13日 · 体力挑战日",
-    sub: "Koko Head + Tide Pool，最累的一天",
-    color: "#2F6B4F",
-    stops: [
+      {time:"14:00", name:"Makapuʻu Point Lighthouse Trail", note:"约1小时，难度低，风景极好", lat:21.303898, lng:-157.6535769},
+    ],
+    drive:[
+      {km:15.5, min:20, mode:'drive', real:true},
+      {km:2.5,  min:6,  mode:'drive', real:false},
+      {km:3.0,  min:6,  mode:'drive', real:false},
+    ]},
+  { island:'oahu', title:"Day 3 · 8月13日｜体力挑战日", sub:"Koko Head + Tide Pool，最累的一天",
+    stops:[
       {time:"06:00–07:30", name:"Koko Head Crater Trail", note:"1000级台阶，很晒，必须早去", lat:21.2808697, lng:-157.6919389},
-      {time:"09:30", name:"Makapuʻu Tide Pools", note:"注意：只有退潮才安全，必须查潮汐", lat:21.3040819, lng:-157.649111, warn:"退潮才安全"},
-      {time:"14:00", name:"Lanikai Beach", note:"强烈推荐！比Waikiki漂亮很多", lat:21.3925378, lng:-157.7151208}
-    ]
-  },
-  {
-    date: "8月14日",
-    title: "Day 4 · 8月14日 · Oʻahu 最后一天",
-    sub: "古兰尼牧场 + 植物园 + 飞往大岛",
-    color: "#F5B942",
-    stops: [
-      {time:"08:30–15:30", name:"Kualoa Ranch", note:"UTV 或 Movie Tour", lat:21.5186627, lng:-157.8533464, warn:"必须提前预约"},
+      {time:"09:30", name:"Makapuʻu Tide Pools", note:"必须查潮汐", warn:"只有退潮才安全", lat:21.3040819, lng:-157.649111},
+      {time:"14:00", name:"Lanikai Beach", note:"强烈推荐！比Waikiki漂亮很多", lat:21.3925378, lng:-157.7151208},
+    ],
+    drive:[
+      {km:7.0,  min:12, mode:'drive', real:false},
+      {km:13.0, min:20, mode:'drive', real:false},
+    ]},
+  { island:'oahu', title:"Day 4 · 8月14日｜Oʻahu 最后一天", sub:"古兰尼牧场 + 植物园 + 飞往大岛",
+    stops:[
+      {time:"08:30–15:30", name:"Kualoa Ranch", note:"UTV 或 Movie Tour", warn:"必须提前预约", lat:21.5186627, lng:-157.8533464},
       {time:"16:30", name:"Hoʻomaluhia Botanical Garden", note:"快速打卡，拍照圣地", lat:21.3871682, lng:-157.8038244},
-      {time:"18:30", name:"飞往 Hilo", note:"建议住Hilo，为Day 5和Day 6转场更顺", lat:21.3186623, lng:-157.9254018}
-    ]
-  },
-  {
-    date: "8月15日",
-    title: "Day 5 · 8月15日 · 大岛最重要一天",
-    sub: "Hilo + 黑沙滩 + 火山国家公园",
-    color: "#0B3D4E",
-    stops: [
+      {time:"18:30", name:"飞往 Hilo", note:"建议住Hilo，不建议住Kona", lat:21.3186623, lng:-157.9254018},
+    ],
+    drive:[
+      {km:19.3, min:30, mode:'drive', real:true},
+      {km:22.5, min:38, mode:'drive', real:false},
+    ]},
+  { island:'bigisland', title:"Day 5 · 8月15日｜大岛最重要一天", sub:"Hilo + 黑沙滩 + 火山国家公园",
+    stops:[
       {time:"08:00", name:"Hilo Farmer's Market", note:"最好早去", lat:19.7229776, lng:-155.084795},
       {time:"09:30", name:"Rainbow Falls", note:"10分钟打卡，非常漂亮", lat:19.7192836, lng:-155.109422},
       {time:"12:00", name:"Punaluʻu Black Sand Beach", note:"可能看到海龟", lat:19.1357578, lng:-155.5047867},
-      {time:"14:30–19:30", name:"Hawaiʻi Volcanoes National Park", note:"Thurston Lava Tube / Steam Vents / Crater Rim Drive", lat:19.4963669, lng:-155.4661859}
-    ]
-  },
-  {
-    date: "8月16日",
-    title: "Day 6 · 8月16日 · Hilo → Mauna Kea → Kona",
-    sub: "专门做转场和云海：从Hilo出发更省时间，晚上入住Kona",
-    color: "#D94B2B",
-    stops: [
-      {time:"09:30–11:00", name:"Hilo 酒店退房 / 早餐 / 补给 / 加油", note:"轻松起床，不要把上午排太满", lat:19.7241, lng:-155.0868},
-      {time:"11:00–13:00", name:"Liliʻuokalani Gardens / Coconut Island", note:"Hilo附近轻松景点；也可以直接休息，不要太累", lat:19.7286, lng:-155.0674},
-      {time:"13:30", name:"从 Hilo 出发去 Mauna Kea VIS", note:"Hilo到VIS约1小时–1小时10分钟，比从Kona过去更顺", lat:19.7592729, lng:-155.4561238},
-      {time:"15:00–16:30", name:"Maunakea Visitor Information Station", note:"适应海拔、上厕所、换厚衣服", lat:19.7592729, lng:-155.4561238},
-      {time:"16:30–19:15", name:"Mauna Kea 云海 / 日落 / 星空", note:"压轴看云海、日落和星空", lat:19.7592729, lng:-155.4561238},
-      {time:"19:30–21:00 / 21:30", name:"下山开去 Kona 酒店入住", note:"行李在车上，尽量不要长时间停偏僻地方；贵重物品不要放明显位置", lat:19.6406, lng:-155.9969, warn:"行李安全"}
-    ]
-  },
-  {
-    date: "8月17日",
-    title: "Day 7 · 8月17日 · Kona 浮潜 + 魔鬼鱼夜潜",
-    sub: "前一天已完成Mauna Kea，这天白天浮潜、下午休息、晚上夜潜",
-    color: "#2F6B4F",
-    stops: [
+      {time:"14:30–19:30", name:"Hawaiʻi Volcanoes National Park", note:"Thurston Lava Tube / Steam Vents / Crater Rim Drive", lat:19.4963669, lng:-155.4661859},
+    ],
+    drive:[
+      {km:3.0,  min:8,  mode:'drive', real:false},
+      {km:93.0, min:83, mode:'drive', real:true},
+      {km:47.0, min:43, mode:'drive', real:true},
+    ]},
+  { island:'bigisland', title:"Day 6 · 8月16日｜Hilo → Mauna Kea → Kona", sub:"这一天专门做转场和云海，最合理",
+    stops:[
+      {time:"09:30–11:00", name:"Hilo 酒店退房", note:"轻松吃早餐、补给、加满油；行李会放车上，贵重物品不要外露", lat:19.7284039, lng:-155.066467},
+      {time:"11:00–13:00", name:"Liliʻuokalani Gardens / Coconut Island", note:"Hilo附近轻松景点二选一，也可以直接休息，不要太累", lat:19.7280832, lng:-155.0676248},
+      {time:"13:30 出发｜15:00–19:15", name:"Maunakea Visitor Information Station", note:"先适应海拔、上厕所、换厚衣服；16:30–19:15看云海、日落、星空", lat:19.7592729, lng:-155.4561238},
+      {time:"19:30–21:00 / 21:30", name:"Kona 酒店入住", note:"下山后开去Kona酒店入住；晚上不要安排太多活动", lat:19.641164, lng:-155.9961971},
+    ],
+    drive:[
+      {km:1.0,  min:5,  mode:'drive', real:false},
+      {km:69.0, min:70, mode:'drive', real:false},
+      {km:93.0, min:90, mode:'drive', real:false},
+    ]},
+  { island:'bigisland', title:"Day 7 · 8月17日｜Kona 浮潜 + 魔鬼鱼夜潜", sub:"前一天已经完成 Mauna Kea，不会和魔鬼鱼夜潜冲突",
+    stops:[
       {time:"09:00–11:30", name:"Kahaluʻu Beach Park", note:"适合新手，鱼多，水相对浅", lat:19.5792662, lng:-155.9666712},
-      {time:"12:00–15:30", name:"午餐 + 回酒店休息", note:"前一天Mauna Kea会比较累，下午一定留休息时间", lat:19.6406, lng:-155.9969},
-      {time:"下午", name:"Kua Bay / Maniniʻowali Beach", note:"轻松看海、拍照、玩水；注意防晒和浪况", lat:19.8101, lng:-156.0225},
-      {time:"20:30–22:30", name:"Manta Ray Night Snorkel", note:"大岛最值得体验的项目之一", lat:19.6478856, lng:-155.9982629, warn:"必须提前预约"}
+      {time:"12:00–15:30", name:"午餐 + 回酒店休息", note:"前一天 Mauna Kea 会比较累，这天下午一定留休息时间", lat:19.641164, lng:-155.9961971},
+      {time:"下午", name:"Kua Bay / Maniniʻowali Beach", note:"下午轻松海滩时间，注意防晒和停车", lat:19.810672, lng:-156.020934},
+      {time:"20:30–22:30", name:"Manta Ray Night Snorkel", note:"大岛最值得体验项目之一", warn:"必须提前预约", lat:19.6478856, lng:-155.9982629},
+    ],
+    drive:[
+      {km:8.0,  min:15, mode:'drive', real:false},
+      {km:25.0, min:30, mode:'drive', real:false},
+      {km:28.0, min:35, mode:'drive', real:false},
+    ]},
+  { island:'bigisland', title:"Day 8 · 8月18日｜北岸自驾 + Kohala Mountain Road + Pololū Valley", sub:"晚上 20:45 KOA 飞机离开，白天走北岸风景线",
+    stops:[
+      {time:"09:00–09:30", name:"Kona / Waikoloa 酒店退房", note:"行李放车里；贵重物品不要放在明显位置", lat:19.641164, lng:-155.9961971},
+      {time:"09:30–10:30", name:"Waimea", note:"从Kona / Waikoloa开往Waimea，正式进入北岸路线", lat:20.022655, lng:-155.672077},
+      {time:"10:30–11:30", name:"Kohala Mountain Road / Hwy 250", note:"风景自驾路段，天气好时很漂亮", lat:20.096132, lng:-155.739491},
+      {time:"11:30–12:45", name:"Hawi / Kapaʻau", note:"午餐 + 小镇逛逛", lat:20.241801, lng:-155.832792},
+      {time:"12:45–13:00", name:"King Kamehameha Statue", note:"快速打卡拍照", lat:20.236198, lng:-155.803398},
+      {time:"13:20–14:10", name:"Pololū Valley Lookout", note:"北岸压轴观景点；如果只看lookout不下谷，时间比较稳", lat:20.203446, lng:-155.733797},
+      {time:"14:10–15:20", name:"Hwy 270 北岸海岸线回程", note:"沿北岸海岸线往回开，风景好但不要停太偏僻的地方", lat:20.118066, lng:-155.824583},
+      {time:"15:30–16:00", name:"Lapakahi State Historical Park", note:"可跳过；时间紧就直接去下一站", lat:20.158694, lng:-155.859049},
+      {time:"16:15–17:00", name:"Hāpuna Beach / Puʻukoholā Heiau", note:"二选一：想看海选Hāpuna Beach，想看历史遗址选Puʻukoholā Heiau", lat:19.993207, lng:-155.824758},
+      {time:"17:00–18:00", name:"晚餐 + 加油 + 整理行李", note:"建议靠近KOA或回机场路线上解决，避免最后赶车", lat:19.736916, lng:-156.0429246},
+      {time:"18:15–18:30｜20:45", name:"KOA 还车 / 飞机离开", note:"18:15–18:30还车；20:45飞机离开", lat:19.736916, lng:-156.0429246},
+    ],
+    drive:[
+      {km:64.0, min:60, mode:'drive', real:false},
+      {km:23.0, min:30, mode:'drive', real:false},
+      {km:21.0, min:30, mode:'drive', real:false},
+      {km:3.3,  min:6,  mode:'drive', real:false},
+      {km:17.0, min:20, mode:'drive', real:false},
+      {km:29.0, min:45, mode:'drive', real:false},
+      {km:6.0,  min:10, mode:'drive', real:false},
+      {km:23.0, min:25, mode:'drive', real:false},
+      {km:33.0, min:35, mode:'drive', real:false},
+      {km:0.2,  min:2,  mode:'drive', real:false},
+    ]},
+]
+
+/* ============ airports ============ */
+const AIRPORTS = {
+  oahu: [ { name:"Daniel K. Inouye 国际机场 (HNL)", lat:21.3186623, lng:-157.9254018 } ],
+  bigisland: [
+    { name:"Hilo 国际机场 (ITO)", lat:19.7184326, lng:-155.0428745 },
+    { name:"Kona · Ellison Onizuka 国际机场 (KOA)", lat:19.736916, lng:-156.0429246 },
+  ]
+};
+
+/* ============ hotel data (curated, avg <$300/晚, 双人标准间) ============ */
+const HOTELS = {
+  oahu: {
+    label: "Waikiki · 8/11 – 8/14 (3晚)",
+    note: "覆盖范围：Honolulu东南角（Kualoa Ranch以南、机场以东）。标准：最低房型价格 < $400/晚（非全房型均价）。",
+    list: [
+      { name:"Ramada Plaza by Wyndham Waikiki", price:"最低约 $145 / 晚起", note:"性价比高，靠近Ala Moana购物中心，步行约10分钟到海滩，无resort fee。",
+        lat:21.2851894, lng:-157.8370917, booking:"https://www.booking.com/hotel/us/ramada-plaza-waikiki.html" },
+      { name:"Aqua Palms Waikiki", price:"最低约 $113 / 晚起", note:"距Waikiki海滩约5分钟步行，家庭友好，含厨房小设施。",
+        lat:21.2848526, lng:-157.8365953, booking:"https://www.booking.com/hotel/us/aqua-palms-spa.html" },
+      { name:"Shoreline Hotel Waikiki", price:"最低约 $143 / 晚起", note:"位置极佳，紧邻Royal Hawaiian Center和海滩，网红设计风格屋顶泳池。",
+        lat:21.2798634, lng:-157.8278286, booking:"https://www.booking.com/hotel/us/shoreline-hotel-waikiki.html" },
+      { name:"Queen Kapiʻolani Hotel", price:"最低约 $119 / 晚起", note:"步行1分钟到海滩，正对Diamond Head景观，靠近Kapiolani公园和动物园。",
+        lat:21.2718446, lng:-157.8211401, booking:"https://www.booking.com/hotel/us/castle-queen-kapiolani.html" },
+      { name:"Prince Waikiki", price:"最低约 $168 / 晚起", note:"Waikiki唯一全海景酒店，infinity泳池正对Ala Wai港湾，靠近Ala Moana购物中心，位置偏西侧较安静。",
+        lat:21.2863676, lng:-157.8401373, booking:"https://www.booking.com/hotel/us/hawaii-price-waikiki.html" },
+      { name:"Hyatt Regency Waikiki Beach Resort & Spa", price:"最低约 $200 / 晚起", note:"正对Waikiki海滩，1230间房的大型度假村，步行到International Market Place，注意约$65/晚resort fee另计。",
+        lat:21.2760834, lng:-157.8253554, booking:"https://www.booking.com/hotel/us/hyatt-regency-waikiki-beach-resort-spa.html" },
+      { name:"Hilton Hawaiian Village Waikiki Beach Resort", price:"最低约 $190 / 晚起", note:"Waikiki地标级度假村，5座泳池+专属泻湖沙滩，周五有烟花秀，注意约$65/晚resort fee及停车费另计。",
+        lat:21.282395, lng:-157.837535, booking:"https://www.booking.com/hotel/us/hilton-hawaiian-village.html" },
     ]
   },
-  {
-    date: "8月18日",
-    title: "Day 8 · 8月18日 · 北岸自驾 + Kohala Mountain Road",
-    sub: "北岸自驾、Kohala山路、Pololū Valley Lookout，晚上KOA离开",
-    color: "#0B3D4E",
-    stops: [
-      {time:"09:00–09:30", name:"Kona 酒店退房", note:"行李放车里，贵重物品不要外露", lat:19.6406, lng:-155.9969, warn:"行李安全"},
-      {time:"09:30–10:30", name:"Kona / Waikoloa → Waimea", note:"前往Waimea，进入北岸自驾节奏", lat:20.0260, lng:-155.6716},
-      {time:"10:30–11:30", name:"Kohala Mountain Road / Hwy 250", note:"山路自驾，风景开阔", lat:20.0911, lng:-155.7931},
-      {time:"11:30–12:45", name:"Hawi / Kapaʻau", note:"午餐 + 小镇逛逛", lat:20.2365, lng:-155.8297},
-      {time:"12:45–13:00", name:"King Kamehameha Statue", note:"快速打卡", lat:20.2308, lng:-155.8018},
-      {time:"13:20–14:10", name:"Pololū Valley Lookout", note:"北岸经典观景点，时间有限建议只看lookout", lat:20.2036, lng:-155.7330},
-      {time:"14:10–15:20", name:"Hwy 270 北岸海岸线回程", note:"沿海岸线回程，注意山路和弯道", lat:20.1918, lng:-155.8585},
-      {time:"15:30–16:00", name:"Lapakahi State Historical Park", note:"可跳过；时间够再停", lat:20.1695, lng:-155.8975},
-      {time:"16:15–17:00", name:"Hāpuna Beach / Puʻukoholā Heiau 二选一", note:"想看海选Hāpuna；想轻松历史打卡选Puʻukoholā Heiau", lat:20.0233, lng:-155.8243},
-      {time:"17:00–18:00", name:"晚餐 + 加油 + 整理行李", note:"预留还车前整理时间", lat:19.6500, lng:-155.9940},
-      {time:"18:15–18:30", name:"KOA 还车", note:"Kona机场还车，预留安检时间", lat:19.7388, lng:-156.0456},
-      {time:"20:45", name:"飞机离开 KOA", note:"大岛行程结束", lat:19.7388, lng:-156.0456}
+  bigisland: {
+    label: "Hilo + Kona + Volcano · 8/14 – 8/18 (4晚)",
+    note: "覆盖范围：大岛全岛。标准：最低房型价格 < $400/晚（非全房型均价）。",
+    list: [
+      { name:"Hilo Hawaiian Hotel", price:"最低约 $148 / 晚起", note:"Hilo湾景酒店，靠近Hilo Farmers Market与Liliʻuokalani Garden，适合住Hilo的2晚。",
+        lat:19.7284039, lng:-155.066467, booking:"https://www.booking.com/hotel/us/castle-hilo-hawaiian.html" },
+      { name:"Grand Naniloa Hotel Hilo · DoubleTree", price:"最低约 $170 / 晚起", note:"Hilo湾景，紧邻Coconut Island Park，9洞高尔夫球场，注意resort fee另计。",
+        lat:19.7295945, lng:-155.0648930, booking:"https://www.booking.com/city/us/hilo.html" },
+      { name:"PACIFIC 19 Kona", price:"最低约 $188 / 晚起", note:"精品设计酒店，步行到Kamakahonu海滩和市中心Aliʻi Drive，适合住Kona的2晚。",
+        lat:19.641164, lng:-155.9961971, booking:"https://www.booking.com/hotel/us/pacific-19.html" },
+      { name:"Royal Kona Resort", price:"最低约 $175 / 晚起", note:"Kailua Bay海景地标酒店，市中心步行可达，含私人沙滩和咸水潟湖，注意约$29/晚resort fee。",
+        lat:19.6321094, lng:-155.9903138, booking:"https://www.booking.com/hotel/us/royal-kona-resort.html" },
+      { name:"Courtyard King Kamehameha's Kona Beach Hotel", price:"最低约 $229 / 晚起", note:"海滨大型度假酒店，紧邻市中心与Kahaluʻu Beach Park。",
+        lat:19.6409558, lng:-155.9975161, booking:"https://www.booking.com/hotel/us/king-kamehameha-s-kona-beach.html" },
+      { name:"Volcano House", price:"最低约 $250 / 晚起", note:"唯一坐落在火山国家公园内的酒店，房间可远眺Halemaʻumaʻu火山口，适合Day5在公园附近夜宿。",
+        lat:19.4287416, lng:-155.258360, booking:"https://hawaiivolcanohouse.com/" },
     ]
   }
-];
+};
 
+/* ============ formatting helpers ============ */
+function fmtSeg(d){
+  if(d.mode === 'walk'){
+    return `<span class="car">🚶</span><span>${d.km} km · 约 ${d.min} 分钟（步行）</span>`;
+  }
+  const tag = d.real ? '' : '（预估）';
+  return `<span class="car">🚗</span><span>${d.km} km · 约 ${d.min} 分钟 车程${tag}</span>`;
+}
+
+/* ============ live road-line drawing (best effort, non-blocking) ============ */
+const routeLineCache = new Map();
+async function fetchRouteLine(a,b){
+  const key = a.lat+','+a.lng+';'+b.lat+','+b.lng;
+  if(routeLineCache.has(key)) return routeLineCache.get(key);
+  let coords = null;
+  try{
+    const url = `https://router.project-osrm.org/route/v1/driving/${a.lng},${a.lat};${b.lng},${b.lat}?overview=full&geometries=geojson`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if(data && data.code === 'Ok' && data.routes && data.routes[0]){
+      coords = data.routes[0].geometry.coordinates.map(c=>[c[1],c[0]]);
+    }
+  }catch(e){ /* ignore, caller falls back to straight line */ }
+  routeLineCache.set(key, coords);
+  return coords;
+}
+
+/* ============ map & state ============ */
 let map, markersLayer, routeLayer;
-let activeDay = 0;
+let currentView = 'day';
+let activeDayIdx = 0;
+let activeIsland = 'oahu';
+let showHotels = false;
 
 function initMap(){
   map = L.map('map', {
-    zoomControl:true,
-    scrollWheelZoom:true,
-    doubleClickZoom:true,
-    touchZoom:true,
-    boxZoom:true,
-    minZoom:2,
-    maxZoom:18
+    zoomControl:true, scrollWheelZoom:true, doubleClickZoom:true,
+    touchZoom:true, boxZoom:true, minZoom:2, maxZoom:18
   }).setView([20.8,-156.8], 8);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: ''
-  }).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:18, attribution:'' }).addTo(map);
   markersLayer = L.layerGroup().addTo(map);
   routeLayer = L.layerGroup().addTo(map);
-  renderTabs();
-  renderDay(0);
 
-  // Ensure map recalculates its size correctly (fixes zoom controls not working
-  // when the map is initialized inside a container that wasn't fully laid out yet)
+  document.getElementById('viewSwitch').addEventListener('click', (e)=>{
+    const btn = e.target.closest('.view-btn');
+    if(!btn) return;
+    currentView = btn.dataset.view;
+    document.querySelectorAll('.view-btn').forEach(b=>b.classList.toggle('active', b===btn));
+    render();
+  });
+
+  render();
   setTimeout(()=> map.invalidateSize(), 200);
   window.addEventListener('resize', ()=> map.invalidateSize());
 }
 
-function renderTabs(){
+function render(){
+  if(currentView === 'day'){
+    renderDayTabs();
+    document.getElementById('toolbar').innerHTML = '';
+    renderDay(activeDayIdx);
+  } else {
+    renderIslandTabs();
+    renderToolbarIsland();
+    renderIsland(activeIsland);
+  }
+}
+
+/* ---------------- DAY VIEW ---------------- */
+function renderDayTabs(){
   const tabsEl = document.getElementById('tabs');
   tabsEl.innerHTML = '';
   DAYS.forEach((d,i)=>{
     const t = document.createElement('div');
-    t.className = 'tab' + (i===activeDay ? ' active':'');
-    const tabText = d.title.split('·').slice(2).join('·').trim() || d.title;
-    t.innerHTML = `<span class="d">D${i+1}</span>${d.date} · ${tabText}`;
-    t.onclick = ()=>{ activeDay = i; renderTabs(); renderDay(i); };
+    t.className = 'tab' + (i===activeDayIdx ? ' active':'');
+    const shortTitle = d.title.split('·')[1] ? d.title.split('·')[1].trim() : d.title;
+    t.innerHTML = `<span class="d">D${i+1}</span>${shortTitle}`;
+    t.onclick = ()=>{ activeDayIdx = i; render(); };
     tabsEl.appendChild(t);
   });
 }
 
 function renderDay(i){
   const day = DAYS[i];
-  document.getElementById('dayTitle').textContent = day.title;
-  document.getElementById('daySub').textContent = day.sub;
+  const color = DAY_COLORS[i % DAY_COLORS.length];
+  const info = document.getElementById('dayInfo');
+  info.innerHTML = `<div class="day-title">${day.title}</div><div class="day-sub">${day.sub}</div><div id="stopsList"></div>`;
+  const list = document.getElementById('stopsList');
 
   markersLayer.clearLayers();
   routeLayer.clearLayers();
-
   const bounds = [];
-  const latlngs = [];
 
   day.stops.forEach((s, idx)=>{
-    const icon = L.divIcon({
-      className: '',
-      html: `<div style="background:${day.color};color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,0.3);border:2px solid #fff;">${idx+1}</div>`,
-      iconSize:[26,26],
-      iconAnchor:[13,13]
-    });
+    const icon = markerIcon(color, idx+1);
     const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
     const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
-    m.bindPopup(`
-      <div style="min-width:180px">
-        <b>${s.name}</b><br>
-        <span style="color:#D94B2B;font-weight:600;">${s.time}</span><br>
-        <span>${s.note}</span><br>
-        ${s.warn ? `<span style="color:#D94B2B;">⚠️ ${s.warn}</span><br>` : ''}
-        <a href="${gmapsUrl}" target="_blank" rel="noopener"
-           style="display:inline-block;margin-top:6px;color:#0E5E77;font-weight:600;text-decoration:underline;">
-           在 Google Maps 中查看 ↗
-        </a>
-      </div>
-    `);
-    s._marker = m;
+    m.bindPopup(popupHtml(s, gmapsUrl));
     bounds.push([s.lat, s.lng]);
-    latlngs.push([s.lat, s.lng]);
-  });
 
-  if(latlngs.length > 1){
-    L.polyline(latlngs, { color: day.color, weight:3, opacity:0.6, dashArray:'6 8' }).addTo(routeLayer);
-  }
-  if(bounds.length){
-    map.fitBounds(bounds, { padding:[40,40], maxZoom:12 });
-  }
-
-  const list = document.getElementById('stopsList');
-  list.innerHTML = '';
-  day.stops.forEach((s, idx)=>{
     const el = document.createElement('div');
     el.className = 'stop';
-    el.style.cursor = 'pointer';
-    el.innerHTML = `
-      <div class="dot" style="background:${day.color}">${idx+1}</div>
-      <div class="body">
-        <div class="time">${s.time}</div>
-        <div class="name">${s.name}</div>
-        <div class="note">${s.note}</div>
-        ${s.warn ? `<div class="warn">⚠️ ${s.warn}</div>` : ''}
-      </div>
-    `;
-    el.addEventListener('click', ()=>{
-      if(s._marker){
-        map.setView([s.lat, s.lng], 14);
-        s._marker.openPopup();
+    el.innerHTML = stopHtml(s, idx, color);
+    el.addEventListener('click', ()=>{ map.setView([s.lat,s.lng], 14); m.openPopup(); });
+    list.appendChild(el);
+
+    if(idx < day.stops.length - 1){
+      const d = day.drive[idx];
+      const seg = document.createElement('div');
+      seg.className = 'drive-seg' + (d && !d.real ? ' est' : '');
+      seg.innerHTML = d ? fmtSeg(d) : '';
+      list.appendChild(seg);
+    }
+  });
+
+  if(bounds.length) map.fitBounds(bounds, { padding:[40,40], maxZoom:12 });
+  drawDayRoutes(i, day, color);
+}
+
+function drawDayRoutes(dayIdx, day, color){
+  for(let idx=0; idx<day.stops.length-1; idx++){
+    const a = day.stops[idx], b = day.stops[idx+1];
+    L.polyline([[a.lat,a.lng],[b.lat,b.lng]], { color, weight:2.5, opacity:0.45, dashArray:'6 8' }).addTo(routeLayer);
+    fetchRouteLine(a,b).then(coords=>{
+      if(coords && currentView==='day' && activeDayIdx===dayIdx){
+        L.polyline(coords, { color, weight:3.5, opacity:0.8 }).addTo(routeLayer);
       }
     });
-    list.appendChild(el);
+  }
+}
+
+/* ---------------- ISLAND VIEW ---------------- */
+const ISLAND_META = {
+  oahu: { label:"Honolulu (Oʻahu)", dayIdxs:[0,1,2,3] },
+  bigisland: { label:"Big Island", dayIdxs:[4,5,6,7] }
+};
+
+function renderIslandTabs(){
+  const tabsEl = document.getElementById('tabs');
+  tabsEl.innerHTML = '';
+  Object.keys(ISLAND_META).forEach(key=>{
+    const t = document.createElement('div');
+    t.className = 'tab' + (key===activeIsland ? ' active':'');
+    t.innerHTML = ISLAND_META[key].label;
+    t.onclick = ()=>{ activeIsland = key; render(); };
+    tabsEl.appendChild(t);
   });
+}
+
+function renderToolbarIsland(){
+  const bar = document.getElementById('toolbar');
+  const dayIdxs = ISLAND_META[activeIsland].dayIdxs;
+  const legend = dayIdxs.map(i=>{
+    const color = DAY_COLORS[i % DAY_COLORS.length];
+    return `<span><span class="dot" style="background:${color}"></span>Day ${i+1}</span>`;
+  }).join('') + `<span><span style="display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:middle;">✈️</span>机场</span>`;
+  bar.innerHTML = `
+    <div class="legend">${legend}</div>
+    <div class="hotel-toggle ${showHotels?'on':''}" id="hotelToggle">
+      <span class="sw"></span><span>🏨 显示酒店</span>
+    </div>
+  `;
+  document.getElementById('hotelToggle').onclick = ()=>{ showHotels = !showHotels; render(); };
+}
+
+function renderIsland(islandKey){
+  const dayIdxs = ISLAND_META[islandKey].dayIdxs;
+  const info = document.getElementById('dayInfo');
+
+  markersLayer.clearLayers();
+  routeLayer.clearLayers();
+  const bounds = [];
+
+  // airports always shown in island view
+  AIRPORTS[islandKey].forEach(ap=>{
+    const icon = L.divIcon({
+      className:'',
+      html:`<div style="font-size:20px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.4));">✈️</div>`,
+      iconSize:[24,24], iconAnchor:[12,12]
+    });
+    const m = L.marker([ap.lat, ap.lng], {icon, zIndexOffset:500}).addTo(markersLayer);
+    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${ap.lat},${ap.lng}`;
+    m.bindPopup(`<b>✈️ ${ap.name}</b><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">在 Google Maps 中查看 ↗</a>`);
+    bounds.push([ap.lat, ap.lng]);
+  });
+
+  if(showHotels){
+    info.innerHTML = `<div class="day-title">${ISLAND_META[islandKey].label} · 酒店参考</div>
+      <div class="hotel-panel-head">${HOTELS[islandKey].note}</div>
+      <div id="hotelList"></div>`;
+    const list = document.getElementById('hotelList');
+
+    // attractions become plain dots (decluttered)
+    dayIdxs.forEach(di=>{
+      const day = DAYS[di];
+      const color = DAY_COLORS[di % DAY_COLORS.length];
+      day.stops.forEach(s=>{
+        const icon = plainDotIcon(color);
+        const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
+        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+        m.bindPopup(popupHtml(s, gmapsUrl));
+        bounds.push([s.lat, s.lng]);
+      });
+      drawIslandDayRoutes(di, day, color, islandKey);
+    });
+
+    HOTELS[islandKey].list.forEach((h, idx)=>{
+      const icon = hotelIcon();
+      const m = L.marker([h.lat, h.lng], {icon, zIndexOffset:800}).addTo(markersLayer);
+      const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${h.lat},${h.lng}`;
+      m.bindPopup(`<div style="min-width:180px"><b>${idx+1}. ${h.name}</b><br><span style="color:#D94B2B;font-weight:600">${h.price}</span><br>${h.note}<br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">在 Google Maps 中查看 ↗</a></div>`);
+      bounds.push([h.lat, h.lng]);
+
+      const card = document.createElement('div');
+      card.className = 'hotel-card';
+      card.innerHTML = `
+        <div class="hnum">${idx+1}</div>
+        <div>
+          <div class="hname">${h.name}</div>
+          <div class="hprice">${h.price}</div>
+          <div class="hnote">${h.note}</div>
+          <div class="hotel-links">
+            <a href="${gmapsUrl}" target="_blank" rel="noopener">Google Maps ↗</a>
+            <a class="book" href="${h.booking}" target="_blank" rel="noopener">Booking.com ↗</a>
+          </div>
+        </div>
+      `;
+      card.addEventListener('click', ()=>{ map.setView([h.lat,h.lng], 13); m.openPopup(); });
+      list.appendChild(card);
+    });
+
+  } else {
+    info.innerHTML = `<div class="day-title">${ISLAND_META[islandKey].label}</div>
+      <div class="day-sub">${islandKey==='oahu' ? '欧胡岛 Day 1–4 全部景点与路线' : '大岛 Day 5–8 全部景点与路线'}</div>
+      <div id="islandStops"></div>`;
+    const list = document.getElementById('islandStops');
+
+    dayIdxs.forEach(di=>{
+      const day = DAYS[di];
+      const color = DAY_COLORS[di % DAY_COLORS.length];
+
+      const head = document.createElement('div');
+      head.className = 'section-head';
+      head.innerHTML = `<span class="bar" style="background:${color}"></span><span class="t">Day ${di+1} · ${day.title.split('·')[1] ? day.title.split('·')[1].trim() : day.title}</span>`;
+      list.appendChild(head);
+
+      day.stops.forEach((s, idx)=>{
+        const icon = markerIcon(color, idx+1);
+        const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
+        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+        m.bindPopup(popupHtml(s, gmapsUrl));
+        bounds.push([s.lat, s.lng]);
+
+        const el = document.createElement('div');
+        el.className = 'stop';
+        el.innerHTML = stopHtml(s, idx, color);
+        el.addEventListener('click', ()=>{ map.setView([s.lat,s.lng], 14); m.openPopup(); });
+        list.appendChild(el);
+
+        if(idx < day.stops.length - 1){
+          const d = day.drive[idx];
+          const seg = document.createElement('div');
+          seg.className = 'drive-seg' + (d && !d.real ? ' est' : '');
+          seg.innerHTML = d ? fmtSeg(d) : '';
+          list.appendChild(seg);
+        }
+      });
+
+      drawIslandDayRoutes(di, day, color, islandKey);
+    });
+  }
+
+  if(bounds.length) map.fitBounds(bounds, { padding:[40,40], maxZoom:12 });
+}
+
+function drawIslandDayRoutes(dayIdx, day, color, islandKey){
+  for(let idx=0; idx<day.stops.length-1; idx++){
+    const a = day.stops[idx], b = day.stops[idx+1];
+    L.polyline([[a.lat,a.lng],[b.lat,b.lng]], { color, weight:2, opacity:0.4, dashArray:'6 8' }).addTo(routeLayer);
+    fetchRouteLine(a,b).then(coords=>{
+      if(coords && currentView==='island' && activeIsland===islandKey){
+        L.polyline(coords, { color, weight:3, opacity:0.7 }).addTo(routeLayer);
+      }
+    });
+  }
+}
+
+/* ---------------- shared render helpers ---------------- */
+function markerIcon(color, num){
+  return L.divIcon({
+    className:'',
+    html:`<div style="background:${color};color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,0.3);border:2px solid #fff;">${num}</div>`,
+    iconSize:[26,26], iconAnchor:[13,13]
+  });
+}
+
+function plainDotIcon(color){
+  return L.divIcon({
+    className:'',
+    html:`<div style="background:${color};width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.35);"></div>`,
+    iconSize:[11,11], iconAnchor:[5,5]
+  });
+}
+
+function hotelIcon(){
+  return L.divIcon({
+    className:'',
+    html:`<div style="width:20px;height:20px;background:#1B2A2E;border:2px solid #F5B942;border-radius:6px;transform:rotate(45deg);box-shadow:0 2px 5px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;">
+            <span style="transform:rotate(-45deg);font-size:10px;">🛏️</span>
+          </div>`,
+    iconSize:[20,20], iconAnchor:[10,10]
+  });
+}
+
+function popupHtml(s, gmapsUrl){
+  return `
+    <div style="min-width:180px">
+      <b>${s.name}</b><br>
+      <span style="color:#D94B2B;font-weight:600;">${s.time}</span><br>
+      <span>${s.note}</span><br>
+      ${s.warn ? `<span style="color:#D94B2B;">⚠️ ${s.warn}</span><br>` : ''}
+      <a href="${gmapsUrl}" target="_blank" rel="noopener"
+         style="display:inline-block;margin-top:6px;color:#0E5E77;font-weight:600;text-decoration:underline;">
+         在 Google Maps 中查看 ↗
+      </a>
+    </div>
+  `;
+}
+
+function stopHtml(s, idx, color){
+  return `
+    <div class="dot" style="background:${color}">${idx+1}</div>
+    <div class="body">
+      <div class="time">${s.time}</div>
+      <div class="name">${s.name}</div>
+      <div class="note">${s.note}</div>
+      ${s.warn ? `<div class="warn">⚠️ ${s.warn}</div>` : ''}
+    </div>
+  `;
 }
 
 initMap();
 </script>
-
 </body>
 </html>
