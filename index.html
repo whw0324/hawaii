@@ -168,6 +168,54 @@
 
   .hotel-panel-head{ font-size:12px; color:rgba(27,42,46,0.55); margin-bottom:14px; line-height:1.6; }
 
+  .restaurant-toggle{
+    display:flex; align-items:center; gap:8px; cursor:pointer; user-select:none;
+    font-size:13px; font-weight:600; color:var(--ink);
+    background:#fff; border:1.5px solid var(--line); padding:7px 14px; border-radius:999px;
+    transition: all .15s ease;
+  }
+  .restaurant-toggle.on{ background:var(--lava); color:#fff; border-color:var(--lava); }
+  .restaurant-toggle .sw{ width:30px; height:16px; border-radius:999px; background:rgba(0,0,0,0.15); position:relative; flex:0 0 auto; }
+  .restaurant-toggle .sw::after{
+    content:""; position:absolute; top:2px; left:2px; width:12px; height:12px; border-radius:50%;
+    background:#fff; transition: left .15s ease;
+  }
+  .restaurant-toggle.on .sw{ background:rgba(255,255,255,0.3); }
+  .restaurant-toggle.on .sw::after{ left:16px; }
+
+  .restaurant-card{ display:grid; grid-template-columns: 26px 1fr; gap:12px; padding:12px 0; border-top:1px solid var(--line); cursor:pointer; }
+  .restaurant-card:first-of-type{ border-top:none; }
+  .restaurant-card .rnum{
+    width:26px; height:26px; border-radius:8px; background:var(--lava); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .restaurant-card .rname{ font-size:14px; font-weight:700; margin-bottom:2px; }
+  .restaurant-card .rcat{ font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--palm); margin-bottom:3px; }
+  .restaurant-card .rnote{ font-size:12px; color:rgba(27,42,46,0.65); line-height:1.5; margin-bottom:6px; }
+  .restaurant-links{ display:flex; gap:10px; }
+  .restaurant-links a{
+    font-size:11.5px; font-weight:600; color:var(--ocean); text-decoration:none;
+    border:1px solid var(--line); padding:4px 10px; border-radius:999px;
+  }
+  .restaurant-links a:hover{ background:var(--sand); }
+
+  .restaurant-panel-head{ font-size:12px; color:rgba(27,42,46,0.55); margin-bottom:14px; line-height:1.6; }
+
+  .rloc-toggle{
+    font-size:11.5px; font-weight:600; color:var(--palm); text-decoration:none; cursor:pointer;
+    border:1px solid var(--line); padding:4px 10px; border-radius:999px; background:#fff;
+  }
+  .rloc-toggle:hover{ background:var(--sand); }
+  .rloc-sublist{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); }
+  .rloc-item{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:6px 8px; border-radius:8px; cursor:pointer; font-size:12px;
+  }
+  .rloc-item:hover{ background:var(--sand); }
+  .rloc-item .rloc-label{ color:rgba(27,42,46,0.75); }
+  .rloc-item a{ font-size:11px; font-weight:600; color:var(--ocean); text-decoration:none; white-space:nowrap; }
+
 
   .day-note{
     margin-top:18px; padding:12px 14px; border-radius:14px;
@@ -202,6 +250,67 @@
   .reservation-item .name{ font-size:14px; font-weight:700; margin-bottom:4px; }
   .reservation-item .desc{ font-size:12px; color:rgba(27,42,46,0.65); line-height:1.5; }
 
+  .flight-section{
+    max-width:1120px; margin: -36px auto 0; padding: 0 24px 80px; position:relative;
+  }
+  .flight-card{
+    background:#fff; border:1px solid var(--line); border-radius:18px;
+    box-shadow:0 10px 30px rgba(11,61,78,0.08); padding:22px 24px;
+  }
+  .flight-card h2{
+    font-family:'Fraunces', serif; font-size:24px; margin:0 0 8px; color:var(--ink);
+  }
+  .flight-card > p{
+    margin:0 0 18px; font-size:13px; color:rgba(27,42,46,0.6); line-height:1.6;
+  }
+  .flight-leg{ margin-top:0; }
+  .flight-leg-title{
+    display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif;
+    font-weight:700; font-size:16px; color:var(--ink); margin-bottom:10px;
+    padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+  .flight-leg-tag{
+    font-family:'Space Grotesk', sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.04em; text-transform:uppercase; color:#fff;
+    background:var(--ocean-deep); padding:3px 10px; border-radius:999px;
+  }
+  .flight-pax{
+    border:1px solid var(--line); background:var(--sand); border-radius:14px;
+    padding:12px 14px; margin-bottom:10px;
+  }
+  .flight-pax:last-child{ margin-bottom:0; }
+  .flight-pax-name{ font-size:13px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+  .flight-seg{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    padding:6px 0; border-top:1px dashed var(--line);
+  }
+  .flight-seg:first-of-type{ border-top:none; padding-top:0; }
+  .flight-seg-info{ font-size:12px; line-height:1.5; }
+  .flight-seg-route{ font-weight:600; color:var(--ink); }
+  .flight-seg-time{ color:rgba(27,42,46,0.55); margin-left:4px; }
+  .flight-seg-flight{ color:rgba(27,42,46,0.65); }
+  .flight-seg-actions{ display:flex; gap:8px; flex-wrap:wrap; flex:0 0 auto; }
+  .flight-track-btn{
+    flex:0 0 auto; font-size:11.5px; font-weight:700; color:#fff; text-decoration:none;
+    background:var(--lava); padding:6px 12px; border-radius:999px; white-space:nowrap;
+  }
+  .flight-track-btn:hover{ opacity:0.88; }
+  .flight-detail-btn{
+    flex:0 0 auto; font-size:11.5px; font-weight:700; color:var(--ocean-deep); text-decoration:none;
+    background:#fff; border:1.5px solid var(--ocean-deep); padding:4.5px 12px; border-radius:999px; white-space:nowrap;
+  }
+  .flight-detail-btn:hover{ background:var(--sand); }
+
+  .page-switch{ display:flex; gap:8px; margin-top:28px; }
+  .page-btn{
+    padding:11px 22px; border-radius:999px; font-size:14.5px; font-weight:700;
+    cursor:pointer; border:1.5px solid rgba(246,239,225,0.35);
+    color:rgba(246,239,225,0.85); background:rgba(255,255,255,0.06);
+    transition: all .15s ease;
+  }
+  .page-btn.active{ background:var(--sand); border-color:var(--sand); color:var(--ocean-deep); }
+  .sub-switch{ margin-top:16px; }
+
   footer{
     max-width:1120px; margin: 24px auto 0; padding: 0 24px;
     font-size:12px; color:rgba(27,42,46,0.45); text-align:center;
@@ -217,9 +326,18 @@
     <div class="eyebrow">ihouse小分队 · Trip Plan</div>
     <h1>夏威夷<br>Oʻahu &amp; Big Island</h1>
     <p class="sub">8月11日–18日，从Waikiki轻松适应，到欧胡岛东海岸、Kualoa Ranch、大岛火山、Mauna Kea云海星空、Kona浮潜与北岸自驾 —— 8天全览路线图。</p>
-    <div class="view-switch" id="viewSwitch">
+    <div class="page-switch" id="pageSwitch">
+      <div class="page-btn active" data-page="plan">🗺️ 旅行计划</div>
+      <div class="page-btn" data-page="flights">✈️ 航班信息</div>
+    </div>
+    <div class="view-switch sub-switch" id="viewSwitch">
       <div class="view-btn active" data-view="day">📅 按天</div>
       <div class="view-btn" data-view="island">🏝️ 按岛</div>
+    </div>
+    <div class="view-switch sub-switch" id="flightLegTabs" style="display:none;">
+      <div class="view-btn active" data-leg="0">去程 · 8/11</div>
+      <div class="view-btn" data-leg="1">中转 · 8/14</div>
+      <div class="view-btn" data-leg="2">回程 · 8/18</div>
     </div>
   </div>
 </div>
@@ -235,6 +353,164 @@
   </div>
 </div>
 
+
+<section class="flight-section">
+  <div class="flight-card">
+    <div class="flight-leg" data-leg="0">
+      <div class="flight-leg-title"><span class="flight-leg-tag">去程 · 8/11</span>前往 Honolulu (HNL)</div>
+
+      <div class="flight-pax">
+        <div class="flight-pax-name">QQ</div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">PHX → HNL</span><span class="flight-seg-time">08:10–11:53</span><br><span class="flight-seg-flight">Alaska Airlines AS 835（由 Hawaiian Airlines 承运）</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA835" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AS%20835" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="flight-pax">
+        <div class="flight-pax-name">Jane</div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">SJC → HNL</span><span class="flight-seg-time">08:15–10:49</span><br><span class="flight-seg-flight">Alaska Airlines AS 1416</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA1416" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AS%201416" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="flight-pax">
+        <div class="flight-pax-name">Sav</div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">PVG → KIX</span><span class="flight-seg-time">13:15–16:35</span><br><span class="flight-seg-flight">Japan Airlines JL 894</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/JAL894" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=JL%20894" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">KIX → HNL</span><span class="flight-seg-time">20:45–10:15（跨日期变更线，当地时间同日抵达）</span><br><span class="flight-seg-flight">Alaska Airlines AS 850（由 Hawaiian Airlines 承运）</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA850" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AS%20850" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flight-leg" data-leg="1">
+      <div class="flight-leg-title"><span class="flight-leg-tag">中转 · 8/14</span>Honolulu → Hilo (ITO)</div>
+
+      <div class="flight-pax">
+        <div class="flight-pax-name">QQ &amp; Sav</div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">HNL → ITO</span><span class="flight-seg-time">20:45–21:45</span><br><span class="flight-seg-flight">Southwest Airlines WN 1845</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/SWA1845" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=WN%201845" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="flight-pax">
+        <div class="flight-pax-name">Jane</div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">HNL → ITO</span><span class="flight-seg-time">21:05–21:59</span><br><span class="flight-seg-flight">Alaska Airlines AS 1122（由 Hawaiian Airlines 承运）</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA1122" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AS%201122" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flight-leg" data-leg="2">
+      <div class="flight-leg-title"><span class="flight-leg-tag">回程 · 8/18</span>离开 Big Island (KOA)</div>
+
+      <div class="flight-pax">
+        <div class="flight-pax-name">QQ</div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">KOA → PHX</span><span class="flight-seg-time">21:45–06:30（次日抵达）</span><br><span class="flight-seg-flight">American Airlines AA 664</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/AAL664" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AA%20664" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="flight-pax">
+        <div class="flight-pax-name">Jane</div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">KOA → LAX</span><span class="flight-seg-time">22:05–（转机 LAX）</span><br><span class="flight-seg-flight">Delta Air Lines DL 486</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=DL%20486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">LAX → SJC</span><span class="flight-seg-time">次日 09:11 抵达</span><br><span class="flight-seg-flight">Delta Air Lines DL 4451（由 SkyWest 代运营 Delta Connection）</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL4451" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=DL%204451" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="flight-pax">
+        <div class="flight-pax-name">Sav</div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">KOA → LAX</span><span class="flight-seg-time">22:05–（转机 LAX，停留约3小时12分）</span><br><span class="flight-seg-flight">Delta Air Lines DL 486</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=DL%20486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+        <div class="flight-seg">
+          <div class="flight-seg-info"><span class="flight-seg-route">LAX → RDU</span><span class="flight-seg-time">次日 17:38 抵达</span><br><span class="flight-seg-flight">Delta Air Lines DL 508</span></div>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL508" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=DL%20508" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="reservation-section">
   <div class="reservation-card">
@@ -343,7 +619,7 @@ const DAYS = [
       {time:"16:45–18:30", name:"前往 HNL 途中吃饭", note:"重要：完成晚餐并前往机场还车", lat:21.3186623, lng:-157.9254018},
       {time:"18:30–19:00", name:"HNL 还车", note:"归还租车并前往航站楼", lat:21.3186623, lng:-157.9254018},
       {time:"19:30–20:45", name:"HNL 候机", note:"安检、候机并准备登机", lat:21.3186623, lng:-157.9254018},
-      {time:"20:45", name:"HNL → ITO 飞往 Hilo", note:"晚上抵达大岛 Hilo；住宿在 Keaau Airbnb", lat:19.7184326, lng:-155.0428745},
+      {time:"20:45", name:"HNL → ITO 飞往 Hilo", note:"晚上抵达大岛 Hilo；住宿在 Keaau Airbnb", lat:19.7184326, lng:-155.0428745, hideInIsland:true},
     ],
     notes:["Ho‘omaluhia Botanical Garden 已安排在 Day 2，因此 Day 4 专注 Kualoa Ranch 两个项目和晚班机转场。"],
     drive:[
@@ -452,7 +728,8 @@ const HOTELS = {
     label: "Waikiki · 8/11–8/14",
     note: "欧胡岛实际住宿（3晚）。地图仅显示 Waikiki 大致区域，不展示门牌地址。",
     list: [
-      { name:"Hyatt Regency Waikiki Beach Resort and Spa", price:"8/11–8/14 · 3晚", area:"Waikiki 区域", note:"实际入住酒店；地图标记为住宿区域示意。", lat:21.2790, lng:-157.8290 }
+      { name:"Hyatt Regency Waikiki Beach Resort and Spa", price:"8/11–8/14 · 3晚", area:"Waikiki 区域", note:"实际入住酒店；地图标记为住宿区域示意。", lat:21.2790, lng:-157.8290 },
+      { name:"Prince Waikiki", price:"8/11–8/14 · 3晚", area:"Waikiki 西侧 / Ala Wai 港湾附近区域", note:"备选住宿；地图标记为住宿区域示意，实际以最终预订为准。", lat:21.2850, lng:-157.8373 }
     ]
   },
   bigisland: {
@@ -461,6 +738,49 @@ const HOTELS = {
     list: [
       { name:"Keaau Airbnb", price:"8/14–8/16 · 2晚", area:"Keaau 周边区域", note:"Day 4 晚抵达后入住；Day 5 继续住这里。", lat:19.6000, lng:-154.9800 },
       { name:"Kailua-Kona Airbnb", price:"8/16–8/18 · 2晚", area:"Kailua-Kona 周边区域", note:"Day 6 从 Mauna Kea 下山后入住；Day 8 早上退房。", lat:19.6200, lng:-155.9700 }
+    ]
+  }
+};
+
+/* ============ restaurant data (approximate locations, verify before visiting) ============ */
+const RESTAURANTS = {
+  oahu: {
+    label: "Honolulu 美食精选",
+    note: "融合夏威夷本土、日式、中式等多种风味，从街头小吃到高级餐厅都有；坐标为大致位置，出发前请再次核实地址、营业时间并提前预定热门店。",
+    list: [
+      { name:"Helena's Hawaiian Food", category:"夏威夷本土", note:"本地老字号，经典美式小馆风格，可点小份多尝几种。推荐 Kalua Pig 配卷心菜、入味牛小排和香酥炸鱼。", lat:21.3278, lng:-157.8605 },
+      { name:"Waiahole Poi Factory", category:"夏威夷本土", note:"外观朴素但人气很旺。招牌 Laulau 咸香软烂；甜品「Sweet Lady of Waiahole」芋泥团子配椰子冰淇淋。", lat:21.4936, lng:-157.8494,
+        locations:[ { label:"Windward Mall 分店", lat:21.4180, lng:-157.8080 } ] },
+      { name:"Rainbow Drive-In", category:"夏威夷本土", note:"本地人推荐的韩式BBQ便当，肉量给得足、烤得不干巴，可打包去海滩吃。饭点排队人多，建议错峰前往。", lat:21.2769, lng:-157.8235 },
+      { name:"Izakaya Naru", category:"日式", note:"本地人力荐的居酒屋，九成客人是日本人，生意超好。菜品丰富、份量不大但都很下酒，务必提前预定！", lat:21.2965, lng:-157.8280 },
+      { name:"Han no Daidokoro", category:"日式", note:"被很多人称为「人生烤肉」，肉质超嫩甚至带奶香味，生肉也很好吃。", lat:21.2932, lng:-157.8536,
+        locations:[ { label:"Waikiki 分店（Kūhiō Ave）", lat:21.2794, lng:-157.8290 } ] },
+      { name:"Totoya とと家", category:"日式", note:"主打新鲜生鱼片，可选套餐再加点喜欢的食材；三文鱼肥美，食材新鲜。", lat:21.2860, lng:-157.8030,
+        locations:[ { label:"Ala Moana 附近分店（Piʻikoi St）", lat:21.2946, lng:-157.8443 } ] },
+      { name:"Marugame Udon 丸龟制面", category:"日式", note:"乌冬面爽滑，炸物香脆，是很多人会排队吃的简餐。", lat:21.2799, lng:-157.8293 },
+      { name:"馥苑海鲜餐厅 Fook Yuen Seafood Restaurant", category:"中式", note:"人气很旺的经典粤菜馆，海鲜新鲜，做法符合广东人口味。招牌脆皮核桃虾、椒盐焗肉蟹。", lat:21.2967, lng:-157.8390 },
+      { name:"滋味成都 Chengdu Taste", category:"中式", note:"北美很正宗的连锁川菜馆，辣味十足，想吃辣的时候来这里准没错。", lat:21.2965, lng:-157.8420 },
+      { name:"Leonard's Bakery", category:"甜品/小吃", note:"夏威夷著名甜甜圈店，口感超级松软，口味选择很多。", lat:21.2846, lng:-157.8218 },
+      { name:"Matsumoto Shave Ice", category:"甜品/小吃", note:"北岸的彩虹刨冰店，色彩斑斓，是夏日解暑的必备甜品（Haleʻiwa，靠近北岸浮潜行程）。", lat:21.5934, lng:-158.1049 },
+      { name:"Musubi Cafe IYASUME", category:"甜品/小吃", note:"超级火的寿司饭团店，颜值高又好吃，很适合打包带去沙滩吃。", lat:21.2807, lng:-157.8283 },
+      { name:"BRUG", category:"甜品/小吃", note:"有名的日式面包店，豆沙馅绵密轻薄不甜很清爽；去晚了货架基本就空了。", lat:21.2911, lng:-157.8437,
+        locations:[ { label:"Mānoa Marketplace 分店", lat:21.3116, lng:-157.8106 }, { label:"Kahala 分店（Kilauea Ave）", lat:21.2811, lng:-157.7910 } ] },
+    ]
+  },
+  bigisland: {
+    label: "Big Island 美食精选",
+    note: "大岛美食选择比欧胡岛少，按 Kona / Hilo / Fine Dining 区域整理；坐标为大致位置，出发前请再次核实地址、营业时间并提前预定 Fine Dining。",
+    list: [
+      { name:"TK Noodle & Hot Pot", category:"Kona", note:"大岛被提到最多的餐厅，主打越南粉和火锅。招牌牛肋骨河粉软烂脱骨、汤底浓郁。⚠️ 会默认加收18%小费，注意别重复给；环境卫生和品控有本地人吐槽不太稳定，建议专攻牛骨系列。人均30–40刀。", lat:19.6450, lng:-155.9955 },
+      { name:"Broke Da Mouth Grindz", category:"Kona", note:"菲律宾融合快餐，主打双拼饭和炸鸡薯条，口味偏甜咸，炖牛肉软烂。只能外带，门口有桌子可坐。", lat:19.6540, lng:-155.9970 },
+      { name:"Umekes Fish Market", category:"Kona", note:"本地人和游客反复推荐的 poke 店，25刀一份菜一份鱼两份饭，蕨菜脆嫩，鱼新鲜看得见。", lat:19.6550, lng:-155.9960 },
+      { name:"Island Vintage Coffee（Kings' Shops）", category:"Kona", note:"Acai bowl 配 haupia cream 是经典组合，甜品感拉满。", lat:19.9219, lng:-155.8792 },
+      { name:"Kula Shave Ice", category:"Hilo", note:"很多人从Kona开一小时车专程去吃的冰店。一定加 haupia cream 和 off menu 的现做 mochi，清爽不齁甜。", lat:19.7241, lng:-155.0868 },
+      { name:"Tetsumen Hawaii", category:"Hilo", note:"日式拉面和居酒屋，拉面料足，烧鸟小吃选择多。Hilo整体定价比Kona便宜，这家性价比不错。", lat:19.7050, lng:-155.0870 },
+      { name:"Hawaiian Style Cafe", category:"Hilo", note:"地道的夏威夷本土体验，Loco Moco量大肉多，一个肉饼盖饭够两人分食；上菜偏慢，感受氛围为主。⚠️ 有反馈牛短肋咬不动、炸物面粉多，建议调低期待。", lat:19.7057, lng:-155.0873,
+        locations:[ { label:"Waimea 分店", lat:20.0245, lng:-155.6720 } ] },
+      { name:"CanoeHouse（Mauna Lani度假村）", category:"Fine Dining", note:"直面太平洋的海景餐厅，推荐订5:30的位子边看日落边吃饭。偏日融合风格，羊排和炒饭不错，人均150刀+；有人反馈实际体验谈不上fine dining，建议把重点放在环境和体验上。", lat:19.9430, lng:-155.8720 },
+      { name:"Moana（Rosewood酒店内）", category:"Fine Dining", note:"目前大岛口碑最好的 fine dining。走地鸡去骨重新拼做，猪肉排油脂均匀多汁，北海道扇贝新鲜，被认为「放在纽约也能打一打」。", lat:19.8310, lng:-156.0080 },
     ]
   }
 };
@@ -501,6 +821,25 @@ let currentView = 'day';
 let activeDayIdx = 0;
 let activeIsland = 'oahu';
 let showHotels = false;
+let showRestaurants = false;
+let currentPage = 'plan';
+let activeFlightLeg = 0;
+
+function renderPageSwitch(){
+  document.querySelectorAll('.page-btn').forEach(b=> b.classList.toggle('active', b.dataset.page===currentPage));
+  const isPlan = currentPage === 'plan';
+  document.querySelector('.wrap').style.display = isPlan ? '' : 'none';
+  document.querySelector('.reservation-section').style.display = isPlan ? '' : 'none';
+  document.querySelector('.flight-section').style.display = isPlan ? 'none' : '';
+  document.getElementById('viewSwitch').style.display = isPlan ? '' : 'none';
+  document.getElementById('flightLegTabs').style.display = isPlan ? 'none' : '';
+  if(isPlan && map) setTimeout(()=> map.invalidateSize(), 50);
+}
+
+function renderFlightLegs(){
+  document.querySelectorAll('#flightLegTabs .view-btn').forEach(t=> t.classList.toggle('active', Number(t.dataset.leg)===activeFlightLeg));
+  document.querySelectorAll('.flight-leg').forEach(l=> l.style.display = Number(l.dataset.leg)===activeFlightLeg ? '' : 'none');
+}
 
 function initMap(){
   map = L.map('map', {
@@ -519,7 +858,23 @@ function initMap(){
     render();
   });
 
+  document.getElementById('pageSwitch').addEventListener('click', (e)=>{
+    const btn = e.target.closest('.page-btn');
+    if(!btn) return;
+    currentPage = btn.dataset.page;
+    renderPageSwitch();
+  });
+
+  document.getElementById('flightLegTabs').addEventListener('click', (e)=>{
+    const btn = e.target.closest('.view-btn');
+    if(!btn) return;
+    activeFlightLeg = Number(btn.dataset.leg);
+    renderFlightLegs();
+  });
+
   render();
+  renderPageSwitch();
+  renderFlightLegs();
   setTimeout(()=> map.invalidateSize(), 200);
   window.addEventListener('resize', ()=> map.invalidateSize());
 }
@@ -563,7 +918,7 @@ function renderDay(i){
   day.stops.forEach((s, idx)=>{
     const icon = markerIcon(color, idx+1);
     const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
-    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+    const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(s.name)}/@${s.lat},${s.lng},17z`;
     m.bindPopup(popupHtml(s, gmapsUrl));
     bounds.push([s.lat, s.lng]);
 
@@ -632,11 +987,25 @@ function renderToolbarIsland(){
   }).join('') + `<span><span style="display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:middle;">✈️</span>机场</span>`;
   bar.innerHTML = `
     <div class="legend">${legend}</div>
-    <div class="hotel-toggle ${showHotels?'on':''}" id="hotelToggle">
-      <span class="sw"></span><span>🏨 显示住宿</span>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <div class="hotel-toggle ${showHotels?'on':''}" id="hotelToggle">
+        <span class="sw"></span><span>🏨 显示住宿</span>
+      </div>
+      <div class="restaurant-toggle ${showRestaurants?'on':''}" id="restaurantToggle">
+        <span class="sw"></span><span>🍽️ 显示餐厅</span>
+      </div>
     </div>
   `;
-  document.getElementById('hotelToggle').onclick = ()=>{ showHotels = !showHotels; render(); };
+  document.getElementById('hotelToggle').onclick = ()=>{
+    showHotels = !showHotels;
+    if(showHotels) showRestaurants = false;
+    render();
+  };
+  document.getElementById('restaurantToggle').onclick = ()=>{
+    showRestaurants = !showRestaurants;
+    if(showRestaurants) showHotels = false;
+    render();
+  };
 }
 
 function renderIsland(islandKey){
@@ -655,8 +1024,8 @@ function renderIsland(islandKey){
       iconSize:[24,24], iconAnchor:[12,12]
     });
     const m = L.marker([ap.lat, ap.lng], {icon, zIndexOffset:500}).addTo(markersLayer);
-    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${ap.lat},${ap.lng}`;
-    m.bindPopup(`<b>✈️ ${ap.name}</b><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">在 Google Maps 中查看 ↗</a>`);
+    const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(ap.name)}/@${ap.lat},${ap.lng},17z`;
+    m.bindPopup(`<b>✈️ ${ap.name}</b><br>${gmapsLink(gmapsUrl, '在 Google Maps 中查看 ↗', 'color:#0E5E77;font-weight:600;')}`);
     bounds.push([ap.lat, ap.lng]);
   });
 
@@ -671,9 +1040,10 @@ function renderIsland(islandKey){
       const day = DAYS[di];
       const color = DAY_COLORS[di % DAY_COLORS.length];
       day.stops.forEach(s=>{
+        if(s.hideInIsland) return;
         const icon = plainDotIcon(color);
         const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
-        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+        const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(s.name)}/@${s.lat},${s.lng},17z`;
         m.bindPopup(popupHtml(s, gmapsUrl));
         bounds.push([s.lat, s.lng]);
       });
@@ -683,8 +1053,8 @@ function renderIsland(islandKey){
     HOTELS[islandKey].list.forEach((h, idx)=>{
       const icon = hotelIcon();
       const m = L.marker([h.lat, h.lng], {icon, zIndexOffset:800}).addTo(markersLayer);
-      const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${h.lat},${h.lng}`;
-      m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${h.name}</b><br><span style="color:#D94B2B;font-weight:600">${h.price}</span><br><span>${h.area}（大致位置）</span><br><span>${h.note}</span><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">查看住宿区域 ↗</a></div>`);
+      const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(h.name)}/@${h.lat},${h.lng},17z`;
+      m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${h.name}</b><br><span style="color:#D94B2B;font-weight:600">${h.price}</span><br><span>${h.area}（大致位置）</span><br><span>${h.note}</span><br>${gmapsLink(gmapsUrl, '查看住宿区域 ↗', 'color:#0E5E77;font-weight:600;')}</div>`);
       bounds.push([h.lat, h.lng]);
 
       const card = document.createElement('div');
@@ -696,12 +1066,103 @@ function renderIsland(islandKey){
           <div class="hprice">${h.price}</div>
           <div class="hnote"><b>区域：</b>${h.area}（大致位置）<br>${h.note}</div>
           <div class="hotel-links">
-            <a href="${gmapsUrl}" target="_blank" rel="noopener">查看区域 ↗</a>
+            ${gmapsLink(gmapsUrl, '查看区域 ↗')}
           </div>
         </div>
       `;
       card.addEventListener('click', ()=>{ map.setView([h.lat,h.lng], 13); m.openPopup(); });
       list.appendChild(card);
+    });
+
+  } else if(showRestaurants){
+    info.innerHTML = `<div class="day-title">${ISLAND_META[islandKey].label} · 美食推荐</div>
+      <div class="restaurant-panel-head">${RESTAURANTS[islandKey].note}</div>
+      <div id="restaurantList"></div>`;
+    const list = document.getElementById('restaurantList');
+
+    // attractions become plain dots (decluttered)
+    dayIdxs.forEach(di=>{
+      const day = DAYS[di];
+      const color = DAY_COLORS[di % DAY_COLORS.length];
+      day.stops.forEach(s=>{
+        if(s.hideInIsland) return;
+        const icon = plainDotIcon(color);
+        const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
+        const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(s.name)}/@${s.lat},${s.lng},17z`;
+        m.bindPopup(popupHtml(s, gmapsUrl));
+        bounds.push([s.lat, s.lng]);
+      });
+      drawIslandDayRoutes(di, day, color, islandKey);
+    });
+
+    RESTAURANTS[islandKey].list.forEach((r, idx)=>{
+      const icon = restaurantIcon();
+      const m = L.marker([r.lat, r.lng], {icon, zIndexOffset:800}).addTo(markersLayer);
+      const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(r.name)}/@${r.lat},${r.lng},17z`;
+      m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${r.name}</b><br><span style="color:#2F6B4F;font-weight:600">${r.category}</span><br><span>${r.note}</span><br>${gmapsLink(gmapsUrl, '在 Google Maps 中查看 ↗', 'color:#0E5E77;font-weight:600;')}</div>`);
+      bounds.push([r.lat, r.lng]);
+
+      // extra markers for restaurants with more than one known branch
+      const extraMarkers = [];
+      (r.locations || []).forEach(loc=>{
+        const em = L.marker([loc.lat, loc.lng], {icon: restaurantIcon(), zIndexOffset:800}).addTo(markersLayer);
+        const locUrl = `https://www.google.com/maps/search/${encodeURIComponent(r.name + ' ' + loc.label)}/@${loc.lat},${loc.lng},17z`;
+        em.bindPopup(`<div style="min-width:210px"><b>${r.name}</b><br><span style="color:#2F6B4F;font-weight:600">${loc.label}</span><br>${gmapsLink(locUrl, '在 Google Maps 中查看 ↗', 'color:#0E5E77;font-weight:600;')}</div>`);
+        bounds.push([loc.lat, loc.lng]);
+        extraMarkers.push(em);
+      });
+
+      const hasMulti = r.locations && r.locations.length > 0;
+      const totalLocs = 1 + (r.locations ? r.locations.length : 0);
+
+      const card = document.createElement('div');
+      card.className = 'restaurant-card';
+      card.innerHTML = `
+        <div class="rnum">${idx+1}</div>
+        <div>
+          <div class="rname">${r.name}</div>
+          <div class="rcat">${r.category}</div>
+          <div class="rnote">${r.note}</div>
+          <div class="restaurant-links">
+            ${gmapsLink(gmapsUrl, '查看位置 ↗')}
+            ${hasMulti ? `<a class="rloc-toggle">显示全部地点（${totalLocs}）▾</a>` : ''}
+          </div>
+          ${hasMulti ? `<div class="rloc-sublist" style="display:none;">
+            <div class="rloc-item" data-lat="${r.lat}" data-lng="${r.lng}">
+              <span class="rloc-label">主店位置</span>${gmapsLink(gmapsUrl, '查看 ↗')}
+            </div>
+            ${r.locations.map(loc=>{
+              const locUrl = `https://www.google.com/maps/search/${encodeURIComponent(r.name + ' ' + loc.label)}/@${loc.lat},${loc.lng},17z`;
+              return `<div class="rloc-item" data-lat="${loc.lat}" data-lng="${loc.lng}">
+                <span class="rloc-label">${loc.label}</span>${gmapsLink(locUrl, '查看 ↗')}
+              </div>`;
+            }).join('')}
+          </div>` : ''}
+        </div>
+      `;
+      card.addEventListener('click', ()=>{ map.setView([r.lat,r.lng], 13); m.openPopup(); });
+      list.appendChild(card);
+
+      if(hasMulti){
+        const toggle = card.querySelector('.rloc-toggle');
+        const sublist = card.querySelector('.rloc-sublist');
+        toggle.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          const willOpen = sublist.style.display === 'none';
+          sublist.style.display = willOpen ? 'block' : 'none';
+          toggle.textContent = `${willOpen ? '收起地点列表' : '显示全部地点'}（${totalLocs}）${willOpen ? '▴' : '▾'}`;
+        });
+        const allMarkers = [m, ...extraMarkers];
+        sublist.querySelectorAll('.rloc-item').forEach(row=>{
+          row.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            const lat = parseFloat(row.dataset.lat), lng = parseFloat(row.dataset.lng);
+            const match = allMarkers.find(mk => Math.abs(mk.getLatLng().lat-lat)<1e-6 && Math.abs(mk.getLatLng().lng-lng)<1e-6);
+            map.setView([lat,lng], 15);
+            if(match) match.openPopup();
+          });
+        });
+      }
     });
 
   } else {
@@ -720,9 +1181,10 @@ function renderIsland(islandKey){
       list.appendChild(head);
 
       day.stops.forEach((s, idx)=>{
+        if(s.hideInIsland) return;
         const icon = markerIcon(color, idx+1);
         const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
-        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+        const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(s.name)}/@${s.lat},${s.lng},17z`;
         m.bindPopup(popupHtml(s, gmapsUrl));
         bounds.push([s.lat, s.lng]);
 
@@ -732,7 +1194,7 @@ function renderIsland(islandKey){
         el.addEventListener('click', ()=>{ map.setView([s.lat,s.lng], 14); m.openPopup(); });
         list.appendChild(el);
 
-        if(idx < day.stops.length - 1){
+        if(idx < day.stops.length - 1 && !day.stops[idx+1].hideInIsland){
           const d = day.drive[idx];
           const seg = document.createElement('div');
           seg.className = 'drive-seg' + (d && !d.real ? ' est' : '');
@@ -749,8 +1211,9 @@ function renderIsland(islandKey){
 }
 
 function drawIslandDayRoutes(dayIdx, day, color, islandKey){
-  for(let idx=0; idx<day.stops.length-1; idx++){
-    const a = day.stops[idx], b = day.stops[idx+1];
+  const stops = day.stops.filter(s=>!s.hideInIsland);
+  for(let idx=0; idx<stops.length-1; idx++){
+    const a = stops[idx], b = stops[idx+1];
     L.polyline([[a.lat,a.lng],[b.lat,b.lng]], { color, weight:2, opacity:0.4, dashArray:'6 8' }).addTo(routeLayer);
     fetchRouteLine(a,b).then(coords=>{
       if(coords && currentView==='island' && activeIsland===islandKey){
@@ -787,6 +1250,23 @@ function hotelIcon(){
   });
 }
 
+function restaurantIcon(){
+  return L.divIcon({
+    className:'',
+    html:`<div style="width:20px;height:20px;background:#D94B2B;border:2px solid #F5B942;border-radius:6px;transform:rotate(45deg);box-shadow:0 2px 5px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;">
+            <span style="transform:rotate(-45deg);font-size:10px;">🍽️</span>
+          </div>`,
+    iconSize:[20,20], iconAnchor:[10,10]
+  });
+}
+
+/* always force a new tab/window and never let the click bubble into a parent handler
+   (e.g. the hotel/restaurant card's own click-to-recenter-map listener) */
+function gmapsLink(url, label, style){
+  return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="${style||''}"
+    onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">${label}</a>`;
+}
+
 function popupHtml(s, gmapsUrl){
   return `
     <div style="min-width:180px">
@@ -794,10 +1274,7 @@ function popupHtml(s, gmapsUrl){
       <span style="color:#D94B2B;font-weight:600;">${s.time}</span><br>
       <span>${s.note}</span><br>
       ${s.warn ? `<span style="color:#D94B2B;">⚠️ ${s.warn}</span><br>` : ''}
-      <a href="${gmapsUrl}" target="_blank" rel="noopener"
-         style="display:inline-block;margin-top:6px;color:#0E5E77;font-weight:600;text-decoration:underline;">
-         在 Google Maps 中查看 ↗
-      </a>
+      ${gmapsLink(gmapsUrl, '在 Google Maps 中查看 ↗', 'display:inline-block;margin-top:6px;color:#0E5E77;font-weight:600;text-decoration:underline;')}
     </div>
   `;
 }
