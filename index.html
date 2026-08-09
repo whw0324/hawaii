@@ -168,6 +168,40 @@
 
   .hotel-panel-head{ font-size:12px; color:rgba(27,42,46,0.55); margin-bottom:14px; line-height:1.6; }
 
+  .restaurant-toggle{
+    display:flex; align-items:center; gap:8px; cursor:pointer; user-select:none;
+    font-size:13px; font-weight:600; color:var(--ink);
+    background:#fff; border:1.5px solid var(--line); padding:7px 14px; border-radius:999px;
+    transition: all .15s ease;
+  }
+  .restaurant-toggle.on{ background:var(--lava); color:#fff; border-color:var(--lava); }
+  .restaurant-toggle .sw{ width:30px; height:16px; border-radius:999px; background:rgba(0,0,0,0.15); position:relative; flex:0 0 auto; }
+  .restaurant-toggle .sw::after{
+    content:""; position:absolute; top:2px; left:2px; width:12px; height:12px; border-radius:50%;
+    background:#fff; transition: left .15s ease;
+  }
+  .restaurant-toggle.on .sw{ background:rgba(255,255,255,0.3); }
+  .restaurant-toggle.on .sw::after{ left:16px; }
+
+  .restaurant-card{ display:grid; grid-template-columns: 26px 1fr; gap:12px; padding:12px 0; border-top:1px solid var(--line); cursor:pointer; }
+  .restaurant-card:first-of-type{ border-top:none; }
+  .restaurant-card .rnum{
+    width:26px; height:26px; border-radius:8px; background:var(--lava); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .restaurant-card .rname{ font-size:14px; font-weight:700; margin-bottom:2px; }
+  .restaurant-card .rcat{ font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--palm); margin-bottom:3px; }
+  .restaurant-card .rnote{ font-size:12px; color:rgba(27,42,46,0.65); line-height:1.5; margin-bottom:6px; }
+  .restaurant-links{ display:flex; gap:10px; }
+  .restaurant-links a{
+    font-size:11.5px; font-weight:600; color:var(--ocean); text-decoration:none;
+    border:1px solid var(--line); padding:4px 10px; border-radius:999px;
+  }
+  .restaurant-links a:hover{ background:var(--sand); }
+
+  .restaurant-panel-head{ font-size:12px; color:rgba(27,42,46,0.55); margin-bottom:14px; line-height:1.6; }
+
 
   .day-note{
     margin-top:18px; padding:12px 14px; border-radius:14px;
@@ -465,6 +499,44 @@ const HOTELS = {
   }
 };
 
+/* ============ restaurant data (approximate locations, verify before visiting) ============ */
+const RESTAURANTS = {
+  oahu: {
+    label: "Honolulu 美食精选",
+    note: "融合夏威夷本土、日式、中式等多种风味，从街头小吃到高级餐厅都有；坐标为大致位置，出发前请再次核实地址、营业时间并提前预定热门店。",
+    list: [
+      { name:"Helena's Hawaiian Food", category:"夏威夷本土", note:"本地老字号，经典美式小馆风格，可点小份多尝几种。推荐 Kalua Pig 配卷心菜、入味牛小排和香酥炸鱼。", lat:21.3278, lng:-157.8605 },
+      { name:"Waiahole Poi Factory", category:"夏威夷本土", note:"外观朴素但人气很旺。招牌 Laulau 咸香软烂；甜品「Sweet Lady of Waiahole」芋泥团子配椰子冰淇淋。", lat:21.4936, lng:-157.8494 },
+      { name:"Rainbow Drive-In", category:"夏威夷本土", note:"本地人推荐的韩式BBQ便当，肉量给得足、烤得不干巴，可打包去海滩吃。饭点排队人多，建议错峰前往。", lat:21.2769, lng:-157.8235 },
+      { name:"Izakaya Naru", category:"日式", note:"本地人力荐的居酒屋，九成客人是日本人，生意超好。菜品丰富、份量不大但都很下酒，务必提前预定！", lat:21.2965, lng:-157.8280 },
+      { name:"Han no Daidokoro", category:"日式", note:"被很多人称为「人生烤肉」，肉质超嫩甚至带奶香味，生肉也很好吃。", lat:21.2932, lng:-157.8536 },
+      { name:"Totoya とと家", category:"日式", note:"主打新鲜生鱼片，可选套餐再加点喜欢的食材；三文鱼肥美，食材新鲜。", lat:21.2860, lng:-157.8030 },
+      { name:"Marugame Udon 丸龟制面", category:"日式", note:"乌冬面爽滑，炸物香脆，是很多人会排队吃的简餐。", lat:21.2799, lng:-157.8293 },
+      { name:"馥苑海鲜餐厅 Fook Yuen Seafood Restaurant", category:"中式", note:"人气很旺的经典粤菜馆，海鲜新鲜，做法符合广东人口味。招牌脆皮核桃虾、椒盐焗肉蟹。", lat:21.2967, lng:-157.8390 },
+      { name:"滋味成都 Chengdu Taste", category:"中式", note:"北美很正宗的连锁川菜馆，辣味十足，想吃辣的时候来这里准没错。", lat:21.2965, lng:-157.8420 },
+      { name:"Leonard's Bakery", category:"甜品/小吃", note:"夏威夷著名甜甜圈店，口感超级松软，口味选择很多。", lat:21.2846, lng:-157.8218 },
+      { name:"Matsumoto Shave Ice", category:"甜品/小吃", note:"北岸的彩虹刨冰店，色彩斑斓，是夏日解暑的必备甜品（Haleʻiwa，靠近北岸浮潜行程）。", lat:21.5934, lng:-158.1049 },
+      { name:"Musubi Cafe IYASUME", category:"甜品/小吃", note:"超级火的寿司饭团店，颜值高又好吃，很适合打包带去沙滩吃。", lat:21.2807, lng:-157.8283 },
+      { name:"BRUG", category:"甜品/小吃", note:"有名的日式面包店，豆沙馅绵密轻薄不甜很清爽；去晚了货架基本就空了。", lat:21.2911, lng:-157.8437 },
+    ]
+  },
+  bigisland: {
+    label: "Big Island 美食精选",
+    note: "大岛美食选择比欧胡岛少，按 Kona / Hilo / Fine Dining 区域整理；坐标为大致位置，出发前请再次核实地址、营业时间并提前预定 Fine Dining。",
+    list: [
+      { name:"TK Noodle & Hot Pot", category:"Kona", note:"大岛被提到最多的餐厅，主打越南粉和火锅。招牌牛肋骨河粉软烂脱骨、汤底浓郁。⚠️ 会默认加收18%小费，注意别重复给；环境卫生和品控有本地人吐槽不太稳定，建议专攻牛骨系列。人均30–40刀。", lat:19.6450, lng:-155.9955 },
+      { name:"Broke Da Mouth Grindz", category:"Kona", note:"菲律宾融合快餐，主打双拼饭和炸鸡薯条，口味偏甜咸，炖牛肉软烂。只能外带，门口有桌子可坐。", lat:19.6540, lng:-155.9970 },
+      { name:"Umekes Fish Market", category:"Kona", note:"本地人和游客反复推荐的 poke 店，25刀一份菜一份鱼两份饭，蕨菜脆嫩，鱼新鲜看得见。", lat:19.6550, lng:-155.9960 },
+      { name:"Island Vintage Coffee（Kings' Shops）", category:"Kona", note:"Acai bowl 配 haupia cream 是经典组合，甜品感拉满。", lat:19.9219, lng:-155.8792 },
+      { name:"Kula Shave Ice", category:"Hilo", note:"很多人从Kona开一小时车专程去吃的冰店。一定加 haupia cream 和 off menu 的现做 mochi，清爽不齁甜。", lat:19.7241, lng:-155.0868 },
+      { name:"Tetsumen Hawaii", category:"Hilo", note:"日式拉面和居酒屋，拉面料足，烧鸟小吃选择多。Hilo整体定价比Kona便宜，这家性价比不错。", lat:19.7050, lng:-155.0870 },
+      { name:"Hawaiian Style Cafe", category:"Hilo", note:"地道的夏威夷本土体验，Loco Moco量大肉多，一个肉饼盖饭够两人分食；上菜偏慢，感受氛围为主。⚠️ 有反馈牛短肋咬不动、炸物面粉多，建议调低期待。", lat:19.7057, lng:-155.0873 },
+      { name:"CanoeHouse（Mauna Lani度假村）", category:"Fine Dining", note:"直面太平洋的海景餐厅，推荐订5:30的位子边看日落边吃饭。偏日融合风格，羊排和炒饭不错，人均150刀+；有人反馈实际体验谈不上fine dining，建议把重点放在环境和体验上。", lat:19.9430, lng:-155.8720 },
+      { name:"Moana（Rosewood酒店内）", category:"Fine Dining", note:"目前大岛口碑最好的 fine dining。走地鸡去骨重新拼做，猪肉排油脂均匀多汁，北海道扇贝新鲜，被认为「放在纽约也能打一打」。", lat:19.8310, lng:-156.0080 },
+    ]
+  }
+};
+
 /* ============ formatting helpers ============ */
 function fmtSeg(d){
   if(d.mode === 'flight'){
@@ -501,6 +573,7 @@ let currentView = 'day';
 let activeDayIdx = 0;
 let activeIsland = 'oahu';
 let showHotels = false;
+let showRestaurants = false;
 
 function initMap(){
   map = L.map('map', {
@@ -632,11 +705,25 @@ function renderToolbarIsland(){
   }).join('') + `<span><span style="display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:middle;">✈️</span>机场</span>`;
   bar.innerHTML = `
     <div class="legend">${legend}</div>
-    <div class="hotel-toggle ${showHotels?'on':''}" id="hotelToggle">
-      <span class="sw"></span><span>🏨 显示住宿</span>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <div class="hotel-toggle ${showHotels?'on':''}" id="hotelToggle">
+        <span class="sw"></span><span>🏨 显示住宿</span>
+      </div>
+      <div class="restaurant-toggle ${showRestaurants?'on':''}" id="restaurantToggle">
+        <span class="sw"></span><span>🍽️ 显示餐厅</span>
+      </div>
     </div>
   `;
-  document.getElementById('hotelToggle').onclick = ()=>{ showHotels = !showHotels; render(); };
+  document.getElementById('hotelToggle').onclick = ()=>{
+    showHotels = !showHotels;
+    if(showHotels) showRestaurants = false;
+    render();
+  };
+  document.getElementById('restaurantToggle').onclick = ()=>{
+    showRestaurants = !showRestaurants;
+    if(showRestaurants) showHotels = false;
+    render();
+  };
 }
 
 function renderIsland(islandKey){
@@ -701,6 +788,50 @@ function renderIsland(islandKey){
         </div>
       `;
       card.addEventListener('click', ()=>{ map.setView([h.lat,h.lng], 13); m.openPopup(); });
+      list.appendChild(card);
+    });
+
+  } else if(showRestaurants){
+    info.innerHTML = `<div class="day-title">${ISLAND_META[islandKey].label} · 美食推荐</div>
+      <div class="restaurant-panel-head">${RESTAURANTS[islandKey].note}</div>
+      <div id="restaurantList"></div>`;
+    const list = document.getElementById('restaurantList');
+
+    // attractions become plain dots (decluttered)
+    dayIdxs.forEach(di=>{
+      const day = DAYS[di];
+      const color = DAY_COLORS[di % DAY_COLORS.length];
+      day.stops.forEach(s=>{
+        const icon = plainDotIcon(color);
+        const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
+        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+        m.bindPopup(popupHtml(s, gmapsUrl));
+        bounds.push([s.lat, s.lng]);
+      });
+      drawIslandDayRoutes(di, day, color, islandKey);
+    });
+
+    RESTAURANTS[islandKey].list.forEach((r, idx)=>{
+      const icon = restaurantIcon();
+      const m = L.marker([r.lat, r.lng], {icon, zIndexOffset:800}).addTo(markersLayer);
+      const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lng}`;
+      m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${r.name}</b><br><span style="color:#2F6B4F;font-weight:600">${r.category}</span><br><span>${r.note}</span><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">在 Google Maps 中查看 ↗</a></div>`);
+      bounds.push([r.lat, r.lng]);
+
+      const card = document.createElement('div');
+      card.className = 'restaurant-card';
+      card.innerHTML = `
+        <div class="rnum">${idx+1}</div>
+        <div>
+          <div class="rname">${r.name}</div>
+          <div class="rcat">${r.category}</div>
+          <div class="rnote">${r.note}</div>
+          <div class="restaurant-links">
+            <a href="${gmapsUrl}" target="_blank" rel="noopener">查看位置 ↗</a>
+          </div>
+        </div>
+      `;
+      card.addEventListener('click', ()=>{ map.setView([r.lat,r.lng], 13); m.openPopup(); });
       list.appendChild(card);
     });
 
@@ -782,6 +913,16 @@ function hotelIcon(){
     className:'',
     html:`<div style="width:20px;height:20px;background:#1B2A2E;border:2px solid #F5B942;border-radius:6px;transform:rotate(45deg);box-shadow:0 2px 5px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;">
             <span style="transform:rotate(-45deg);font-size:10px;">🛏️</span>
+          </div>`,
+    iconSize:[20,20], iconAnchor:[10,10]
+  });
+}
+
+function restaurantIcon(){
+  return L.divIcon({
+    className:'',
+    html:`<div style="width:20px;height:20px;background:#D94B2B;border:2px solid #F5B942;border-radius:6px;transform:rotate(45deg);box-shadow:0 2px 5px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;">
+            <span style="transform:rotate(-45deg);font-size:10px;">🍽️</span>
           </div>`,
     iconSize:[20,20], iconAnchor:[10,10]
   });
