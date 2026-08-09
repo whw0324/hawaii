@@ -637,7 +637,7 @@ function renderDay(i){
   day.stops.forEach((s, idx)=>{
     const icon = markerIcon(color, idx+1);
     const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
-    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+    const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(s.name)}/@${s.lat},${s.lng},17z`;
     m.bindPopup(popupHtml(s, gmapsUrl));
     bounds.push([s.lat, s.lng]);
 
@@ -743,7 +743,7 @@ function renderIsland(islandKey){
       iconSize:[24,24], iconAnchor:[12,12]
     });
     const m = L.marker([ap.lat, ap.lng], {icon, zIndexOffset:500}).addTo(markersLayer);
-    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${ap.lat},${ap.lng}`;
+    const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(ap.name)}/@${ap.lat},${ap.lng},17z`;
     m.bindPopup(`<b>✈️ ${ap.name}</b><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">在 Google Maps 中查看 ↗</a>`);
     bounds.push([ap.lat, ap.lng]);
   });
@@ -762,7 +762,7 @@ function renderIsland(islandKey){
         if(s.hideInIsland) return;
         const icon = plainDotIcon(color);
         const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
-        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+        const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(s.name)}/@${s.lat},${s.lng},17z`;
         m.bindPopup(popupHtml(s, gmapsUrl));
         bounds.push([s.lat, s.lng]);
       });
@@ -772,7 +772,7 @@ function renderIsland(islandKey){
     HOTELS[islandKey].list.forEach((h, idx)=>{
       const icon = hotelIcon();
       const m = L.marker([h.lat, h.lng], {icon, zIndexOffset:800}).addTo(markersLayer);
-      const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${h.lat},${h.lng}`;
+      const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(h.name)}/@${h.lat},${h.lng},17z`;
       m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${h.name}</b><br><span style="color:#D94B2B;font-weight:600">${h.price}</span><br><span>${h.area}（大致位置）</span><br><span>${h.note}</span><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">查看住宿区域 ↗</a></div>`);
       bounds.push([h.lat, h.lng]);
 
@@ -807,7 +807,7 @@ function renderIsland(islandKey){
         if(s.hideInIsland) return;
         const icon = plainDotIcon(color);
         const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
-        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+        const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(s.name)}/@${s.lat},${s.lng},17z`;
         m.bindPopup(popupHtml(s, gmapsUrl));
         bounds.push([s.lat, s.lng]);
       });
@@ -817,7 +817,7 @@ function renderIsland(islandKey){
     RESTAURANTS[islandKey].list.forEach((r, idx)=>{
       const icon = restaurantIcon();
       const m = L.marker([r.lat, r.lng], {icon, zIndexOffset:800}).addTo(markersLayer);
-      const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lng}`;
+      const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(r.name)}/@${r.lat},${r.lng},17z`;
       m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${r.name}</b><br><span style="color:#2F6B4F;font-weight:600">${r.category}</span><br><span>${r.note}</span><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">在 Google Maps 中查看 ↗</a></div>`);
       bounds.push([r.lat, r.lng]);
 
@@ -857,7 +857,7 @@ function renderIsland(islandKey){
         if(s.hideInIsland) return;
         const icon = markerIcon(color, idx+1);
         const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
-        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+        const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(s.name)}/@${s.lat},${s.lng},17z`;
         m.bindPopup(popupHtml(s, gmapsUrl));
         bounds.push([s.lat, s.lng]);
 
