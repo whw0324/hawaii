@@ -1114,6 +1114,12 @@ function renderIsland(islandKey){
 
       const hasMulti = r.locations && r.locations.length > 0;
       const totalLocs = 1 + (r.locations ? r.locations.length : 0);
+      // for multi-branch restaurants, the card's main "查看位置" button should show
+      // all branches (no coordinate bias); map markers and the sublist keep their
+      // own precise per-branch links.
+      const cardGmapsUrl = hasMulti
+        ? `https://www.google.com/maps/search/${encodeURIComponent(r.name)}`
+        : gmapsUrl;
 
       const card = document.createElement('div');
       card.className = 'restaurant-card';
@@ -1124,7 +1130,7 @@ function renderIsland(islandKey){
           <div class="rcat">${r.category}</div>
           <div class="rnote">${r.note}</div>
           <div class="restaurant-links">
-            ${gmapsLink(gmapsUrl, '查看位置 ↗')}
+            ${gmapsLink(cardGmapsUrl, '查看位置 ↗')}
             ${hasMulti ? `<a class="rloc-toggle">显示全部地点（${totalLocs}）▾</a>` : ''}
           </div>
           ${hasMulti ? `<div class="rloc-sublist" style="display:none;">
