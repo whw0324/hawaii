@@ -377,7 +377,7 @@ const DAYS = [
       {time:"16:45–18:30", name:"前往 HNL 途中吃饭", note:"重要：完成晚餐并前往机场还车", lat:21.3186623, lng:-157.9254018},
       {time:"18:30–19:00", name:"HNL 还车", note:"归还租车并前往航站楼", lat:21.3186623, lng:-157.9254018},
       {time:"19:30–20:45", name:"HNL 候机", note:"安检、候机并准备登机", lat:21.3186623, lng:-157.9254018},
-      {time:"20:45", name:"HNL → ITO 飞往 Hilo", note:"晚上抵达大岛 Hilo；住宿在 Keaau Airbnb", lat:19.7184326, lng:-155.0428745},
+      {time:"20:45", name:"HNL → ITO 飞往 Hilo", note:"晚上抵达大岛 Hilo；住宿在 Keaau Airbnb", lat:19.7184326, lng:-155.0428745, hideInIsland:true},
     ],
     notes:["Ho‘omaluhia Botanical Garden 已安排在 Day 2，因此 Day 4 专注 Kualoa Ranch 两个项目和晚班机转场。"],
     drive:[
@@ -758,6 +758,7 @@ function renderIsland(islandKey){
       const day = DAYS[di];
       const color = DAY_COLORS[di % DAY_COLORS.length];
       day.stops.forEach(s=>{
+        if(s.hideInIsland) return;
         const icon = plainDotIcon(color);
         const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
         const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
@@ -802,6 +803,7 @@ function renderIsland(islandKey){
       const day = DAYS[di];
       const color = DAY_COLORS[di % DAY_COLORS.length];
       day.stops.forEach(s=>{
+        if(s.hideInIsland) return;
         const icon = plainDotIcon(color);
         const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
         const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
@@ -851,6 +853,7 @@ function renderIsland(islandKey){
       list.appendChild(head);
 
       day.stops.forEach((s, idx)=>{
+        if(s.hideInIsland) return;
         const icon = markerIcon(color, idx+1);
         const m = L.marker([s.lat, s.lng], {icon}).addTo(markersLayer);
         const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
@@ -863,7 +866,7 @@ function renderIsland(islandKey){
         el.addEventListener('click', ()=>{ map.setView([s.lat,s.lng], 14); m.openPopup(); });
         list.appendChild(el);
 
-        if(idx < day.stops.length - 1){
+        if(idx < day.stops.length - 1 && !day.stops[idx+1].hideInIsland){
           const d = day.drive[idx];
           const seg = document.createElement('div');
           seg.className = 'drive-seg' + (d && !d.real ? ' est' : '');
@@ -880,8 +883,9 @@ function renderIsland(islandKey){
 }
 
 function drawIslandDayRoutes(dayIdx, day, color, islandKey){
-  for(let idx=0; idx<day.stops.length-1; idx++){
-    const a = day.stops[idx], b = day.stops[idx+1];
+  const stops = day.stops.filter(s=>!s.hideInIsland);
+  for(let idx=0; idx<stops.length-1; idx++){
+    const a = stops[idx], b = stops[idx+1];
     L.polyline([[a.lat,a.lng],[b.lat,b.lng]], { color, weight:2, opacity:0.4, dashArray:'6 8' }).addTo(routeLayer);
     fetchRouteLine(a,b).then(coords=>{
       if(coords && currentView==='island' && activeIsland===islandKey){
