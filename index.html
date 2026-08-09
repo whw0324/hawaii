@@ -744,7 +744,7 @@ function renderIsland(islandKey){
     });
     const m = L.marker([ap.lat, ap.lng], {icon, zIndexOffset:500}).addTo(markersLayer);
     const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(ap.name)}/@${ap.lat},${ap.lng},17z`;
-    m.bindPopup(`<b>✈️ ${ap.name}</b><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">在 Google Maps 中查看 ↗</a>`);
+    m.bindPopup(`<b>✈️ ${ap.name}</b><br>${gmapsLink(gmapsUrl, '在 Google Maps 中查看 ↗', 'color:#0E5E77;font-weight:600;')}`);
     bounds.push([ap.lat, ap.lng]);
   });
 
@@ -773,7 +773,7 @@ function renderIsland(islandKey){
       const icon = hotelIcon();
       const m = L.marker([h.lat, h.lng], {icon, zIndexOffset:800}).addTo(markersLayer);
       const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(h.name)}/@${h.lat},${h.lng},17z`;
-      m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${h.name}</b><br><span style="color:#D94B2B;font-weight:600">${h.price}</span><br><span>${h.area}（大致位置）</span><br><span>${h.note}</span><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">查看住宿区域 ↗</a></div>`);
+      m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${h.name}</b><br><span style="color:#D94B2B;font-weight:600">${h.price}</span><br><span>${h.area}（大致位置）</span><br><span>${h.note}</span><br>${gmapsLink(gmapsUrl, '查看住宿区域 ↗', 'color:#0E5E77;font-weight:600;')}</div>`);
       bounds.push([h.lat, h.lng]);
 
       const card = document.createElement('div');
@@ -785,7 +785,7 @@ function renderIsland(islandKey){
           <div class="hprice">${h.price}</div>
           <div class="hnote"><b>区域：</b>${h.area}（大致位置）<br>${h.note}</div>
           <div class="hotel-links">
-            <a href="${gmapsUrl}" target="_blank" rel="noopener">查看区域 ↗</a>
+            ${gmapsLink(gmapsUrl, '查看区域 ↗')}
           </div>
         </div>
       `;
@@ -818,7 +818,7 @@ function renderIsland(islandKey){
       const icon = restaurantIcon();
       const m = L.marker([r.lat, r.lng], {icon, zIndexOffset:800}).addTo(markersLayer);
       const gmapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(r.name)}/@${r.lat},${r.lng},17z`;
-      m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${r.name}</b><br><span style="color:#2F6B4F;font-weight:600">${r.category}</span><br><span>${r.note}</span><br><a href="${gmapsUrl}" target="_blank" rel="noopener" style="color:#0E5E77;font-weight:600;">在 Google Maps 中查看 ↗</a></div>`);
+      m.bindPopup(`<div style="min-width:210px"><b>${idx+1}. ${r.name}</b><br><span style="color:#2F6B4F;font-weight:600">${r.category}</span><br><span>${r.note}</span><br>${gmapsLink(gmapsUrl, '在 Google Maps 中查看 ↗', 'color:#0E5E77;font-weight:600;')}</div>`);
       bounds.push([r.lat, r.lng]);
 
       const card = document.createElement('div');
@@ -830,7 +830,7 @@ function renderIsland(islandKey){
           <div class="rcat">${r.category}</div>
           <div class="rnote">${r.note}</div>
           <div class="restaurant-links">
-            <a href="${gmapsUrl}" target="_blank" rel="noopener">查看位置 ↗</a>
+            ${gmapsLink(gmapsUrl, '查看位置 ↗')}
           </div>
         </div>
       `;
@@ -933,6 +933,13 @@ function restaurantIcon(){
   });
 }
 
+/* always force a new tab/window and never let the click bubble into a parent handler
+   (e.g. the hotel/restaurant card's own click-to-recenter-map listener) */
+function gmapsLink(url, label, style){
+  return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="${style||''}"
+    onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">${label}</a>`;
+}
+
 function popupHtml(s, gmapsUrl){
   return `
     <div style="min-width:180px">
@@ -940,10 +947,7 @@ function popupHtml(s, gmapsUrl){
       <span style="color:#D94B2B;font-weight:600;">${s.time}</span><br>
       <span>${s.note}</span><br>
       ${s.warn ? `<span style="color:#D94B2B;">⚠️ ${s.warn}</span><br>` : ''}
-      <a href="${gmapsUrl}" target="_blank" rel="noopener"
-         style="display:inline-block;margin-top:6px;color:#0E5E77;font-weight:600;text-decoration:underline;">
-         在 Google Maps 中查看 ↗
-      </a>
+      ${gmapsLink(gmapsUrl, '在 Google Maps 中查看 ↗', 'display:inline-block;margin-top:6px;color:#0E5E77;font-weight:600;text-decoration:underline;')}
     </div>
   `;
 }
