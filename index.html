@@ -290,11 +290,27 @@
   .flight-seg-route{ font-weight:600; color:var(--ink); }
   .flight-seg-time{ color:rgba(27,42,46,0.55); margin-left:4px; }
   .flight-seg-flight{ color:rgba(27,42,46,0.65); }
+  .flight-seg-actions{ display:flex; gap:8px; flex-wrap:wrap; flex:0 0 auto; }
   .flight-track-btn{
     flex:0 0 auto; font-size:11.5px; font-weight:700; color:#fff; text-decoration:none;
     background:var(--lava); padding:6px 12px; border-radius:999px; white-space:nowrap;
   }
   .flight-track-btn:hover{ opacity:0.88; }
+  .flight-detail-btn{
+    flex:0 0 auto; font-size:11.5px; font-weight:700; color:var(--ocean-deep); text-decoration:none;
+    background:#fff; border:1.5px solid var(--ocean-deep); padding:4.5px 12px; border-radius:999px; white-space:nowrap;
+  }
+  .flight-detail-btn:hover{ background:var(--sand); }
+
+  .page-switch{ display:flex; gap:8px; margin-top:28px; }
+  .page-btn{
+    padding:11px 22px; border-radius:999px; font-size:14.5px; font-weight:700;
+    cursor:pointer; border:1.5px solid rgba(246,239,225,0.35);
+    color:rgba(246,239,225,0.85); background:rgba(255,255,255,0.06);
+    transition: all .15s ease;
+  }
+  .page-btn.active{ background:var(--sand); border-color:var(--sand); color:var(--ocean-deep); }
+  .sub-switch{ margin-top:16px; }
 
   footer{
     max-width:1120px; margin: 24px auto 0; padding: 0 24px;
@@ -311,7 +327,11 @@
     <div class="eyebrow">ihouse小分队 · Trip Plan</div>
     <h1>夏威夷<br>Oʻahu &amp; Big Island</h1>
     <p class="sub">8月11日–18日，从Waikiki轻松适应，到欧胡岛东海岸、Kualoa Ranch、大岛火山、Mauna Kea云海星空、Kona浮潜与北岸自驾 —— 8天全览路线图。</p>
-    <div class="view-switch" id="viewSwitch">
+    <div class="page-switch" id="pageSwitch">
+      <div class="page-btn active" data-page="plan">🗺️ 旅行计划</div>
+      <div class="page-btn" data-page="flights">✈️ 航班信息</div>
+    </div>
+    <div class="view-switch sub-switch" id="viewSwitch">
       <div class="view-btn active" data-view="day">📅 按天</div>
       <div class="view-btn" data-view="island">🏝️ 按岛</div>
     </div>
@@ -332,8 +352,8 @@
 
 <section class="flight-section">
   <div class="flight-card">
-    <h2>✈️ 航班追踪</h2>
-    <p>点击"追踪航班"在 FlightAware 查看该航班的实时状态（起降时间、登机口、是否延误等）。以下信息按各自实际预订整理，如有变动请自行核实更新。</p>
+    <h2>✈️ 航班信息</h2>
+    <p>"追踪航班"是 FlightAware 实时状态（起降时间、登机口、是否延误等）——注意：起飞前24–48小时内才会显示对应日期的具体航班，现在点开可能暂时看不到内容，属正常现象。"查看详情"是该航班号本身的信息（不受时间限制，随时可查）。以下信息按各自实际预订整理，如有变动请自行核实更新。</p>
 
     <div class="flight-leg">
       <div class="flight-leg-title"><span class="flight-leg-tag">去程 · 8/11</span>前往 Honolulu (HNL)</div>
@@ -342,7 +362,13 @@
         <div class="flight-pax-name">QQ</div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">PHX → HNL</span><span class="flight-seg-time">08:10–11:53</span><br><span class="flight-seg-flight">Alaska Airlines AS 835（由 Hawaiian Airlines 承运）</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA835" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA835" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Alaska%20Airlines%20AS835%20flight%20status%20August%2011%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
       </div>
 
@@ -350,7 +376,13 @@
         <div class="flight-pax-name">Jane</div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">SJC → HNL</span><span class="flight-seg-time">08:15–10:49</span><br><span class="flight-seg-flight">Alaska Airlines AS 1416</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA1416" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA1416" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Alaska%20Airlines%20AS1416%20flight%20status%20August%2011%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
       </div>
 
@@ -358,11 +390,23 @@
         <div class="flight-pax-name">Sav</div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">PVG → KIX</span><span class="flight-seg-time">13:15–16:35</span><br><span class="flight-seg-flight">Japan Airlines JL 894</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/JAL894" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/JAL894" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Japan%20Airlines%20JL894%20flight%20status%20August%2011%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">KIX → HNL</span><span class="flight-seg-time">20:45–10:15（跨日期变更线，当地时间同日抵达）</span><br><span class="flight-seg-flight">Alaska Airlines AS 850（由 Hawaiian Airlines 承运）</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA850" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA850" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Alaska%20Airlines%20AS850%20flight%20status%20August%2011%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
       </div>
     </div>
@@ -374,7 +418,13 @@
         <div class="flight-pax-name">QQ &amp; Sav</div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">HNL → ITO</span><span class="flight-seg-time">20:45–21:45</span><br><span class="flight-seg-flight">Southwest Airlines WN 1845</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/SWA1845" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/SWA1845" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Southwest%20Airlines%20WN1845%20flight%20status%20August%2014%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
       </div>
 
@@ -382,7 +432,13 @@
         <div class="flight-pax-name">Jane</div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">HNL → ITO</span><span class="flight-seg-time">21:05–21:59</span><br><span class="flight-seg-flight">Alaska Airlines AS 1122（由 Hawaiian Airlines 承运）</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA1122" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA1122" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Alaska%20Airlines%20AS1122%20flight%20status%20August%2014%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
       </div>
     </div>
@@ -394,7 +450,13 @@
         <div class="flight-pax-name">QQ</div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">KOA → PHX</span><span class="flight-seg-time">21:45–06:30（次日抵达）</span><br><span class="flight-seg-flight">American Airlines AA 664</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/AAL664" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/AAL664" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=American%20Airlines%20AA664%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
       </div>
 
@@ -402,11 +464,23 @@
         <div class="flight-pax-name">Jane</div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">KOA → LAX</span><span class="flight-seg-time">22:05–（转机 LAX）</span><br><span class="flight-seg-flight">Delta Air Lines DL 486</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Delta%20Air%20Lines%20DL486%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">LAX → SJC</span><span class="flight-seg-time">次日 09:11 抵达</span><br><span class="flight-seg-flight">Delta Air Lines DL 4451（由 SkyWest 代运营 Delta Connection）</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL4451" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL4451" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Delta%20Air%20Lines%20DL4451%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
       </div>
 
@@ -414,11 +488,23 @@
         <div class="flight-pax-name">Sav</div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">KOA → LAX</span><span class="flight-seg-time">22:05–（转机 LAX，停留约3小时12分）</span><br><span class="flight-seg-flight">Delta Air Lines DL 486</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Delta%20Air%20Lines%20DL486%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
         <div class="flight-seg">
           <div class="flight-seg-info"><span class="flight-seg-route">LAX → RDU</span><span class="flight-seg-time">次日 17:38 抵达</span><br><span class="flight-seg-flight">Delta Air Lines DL 508</span></div>
-          <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL508" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+          <div class="flight-seg-actions">
+
+            <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL508" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
+
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=Delta%20Air%20Lines%20DL508%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+
+          </div>
         </div>
       </div>
     </div>
@@ -735,6 +821,17 @@ let activeDayIdx = 0;
 let activeIsland = 'oahu';
 let showHotels = false;
 let showRestaurants = false;
+let currentPage = 'plan';
+
+function renderPageSwitch(){
+  document.querySelectorAll('.page-btn').forEach(b=> b.classList.toggle('active', b.dataset.page===currentPage));
+  const isPlan = currentPage === 'plan';
+  document.querySelector('.wrap').style.display = isPlan ? '' : 'none';
+  document.querySelector('.reservation-section').style.display = isPlan ? '' : 'none';
+  document.querySelector('.flight-section').style.display = isPlan ? 'none' : '';
+  document.getElementById('viewSwitch').style.display = isPlan ? '' : 'none';
+  if(isPlan && map) setTimeout(()=> map.invalidateSize(), 50);
+}
 
 function initMap(){
   map = L.map('map', {
@@ -753,7 +850,15 @@ function initMap(){
     render();
   });
 
+  document.getElementById('pageSwitch').addEventListener('click', (e)=>{
+    const btn = e.target.closest('.page-btn');
+    if(!btn) return;
+    currentPage = btn.dataset.page;
+    renderPageSwitch();
+  });
+
   render();
+  renderPageSwitch();
   setTimeout(()=> map.invalidateSize(), 200);
   window.addEventListener('resize', ()=> map.invalidateSize());
 }
