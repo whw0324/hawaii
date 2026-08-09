@@ -251,7 +251,7 @@
   .reservation-item .desc{ font-size:12px; color:rgba(27,42,46,0.65); line-height:1.5; }
 
   .flight-section{
-    max-width:1120px; margin: 24px auto 0; padding: 0 24px 10px;
+    max-width:1120px; margin: -36px auto 0; padding: 0 24px 80px; position:relative;
   }
   .flight-card{
     background:#fff; border:1px solid var(--line); border-radius:18px;
@@ -263,8 +263,7 @@
   .flight-card > p{
     margin:0 0 18px; font-size:13px; color:rgba(27,42,46,0.6); line-height:1.6;
   }
-  .flight-leg{ margin-top:20px; }
-  .flight-leg:first-of-type{ margin-top:0; }
+  .flight-leg{ margin-top:0; }
   .flight-leg-title{
     display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif;
     font-weight:700; font-size:16px; color:var(--ink); margin-bottom:10px;
@@ -335,6 +334,11 @@
       <div class="view-btn active" data-view="day">📅 按天</div>
       <div class="view-btn" data-view="island">🏝️ 按岛</div>
     </div>
+    <div class="view-switch sub-switch" id="flightLegTabs" style="display:none;">
+      <div class="view-btn active" data-leg="0">去程 · 8/11</div>
+      <div class="view-btn" data-leg="1">中转 · 8/14</div>
+      <div class="view-btn" data-leg="2">回程 · 8/18</div>
+    </div>
   </div>
 </div>
 
@@ -352,10 +356,7 @@
 
 <section class="flight-section">
   <div class="flight-card">
-    <h2>✈️ 航班信息</h2>
-    <p>"追踪航班"是 FlightAware 实时状态（起降时间、登机口、是否延误等）——注意：起飞前24–48小时内才会显示对应日期的具体航班，现在点开可能暂时看不到内容，属正常现象。"查看详情"是该航班号本身的信息（不受时间限制，随时可查）。以下信息按各自实际预订整理，如有变动请自行核实更新。</p>
-
-    <div class="flight-leg">
+    <div class="flight-leg" data-leg="0">
       <div class="flight-leg-title"><span class="flight-leg-tag">去程 · 8/11</span>前往 Honolulu (HNL)</div>
 
       <div class="flight-pax">
@@ -366,7 +367,7 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA835" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Alaska%20Airlines%20AS835%20flight%20status%20August%2011%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AS%20835" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
@@ -380,7 +381,7 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA1416" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Alaska%20Airlines%20AS1416%20flight%20status%20August%2011%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AS%201416" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
@@ -394,7 +395,7 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/JAL894" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Japan%20Airlines%20JL894%20flight%20status%20August%2011%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=JL%20894" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
@@ -404,14 +405,14 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA850" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Alaska%20Airlines%20AS850%20flight%20status%20August%2011%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AS%20850" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
       </div>
     </div>
 
-    <div class="flight-leg">
+    <div class="flight-leg" data-leg="1">
       <div class="flight-leg-title"><span class="flight-leg-tag">中转 · 8/14</span>Honolulu → Hilo (ITO)</div>
 
       <div class="flight-pax">
@@ -422,7 +423,7 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/SWA1845" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Southwest%20Airlines%20WN1845%20flight%20status%20August%2014%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=WN%201845" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
@@ -436,14 +437,14 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/ASA1122" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Alaska%20Airlines%20AS1122%20flight%20status%20August%2014%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AS%201122" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
       </div>
     </div>
 
-    <div class="flight-leg">
+    <div class="flight-leg" data-leg="2">
       <div class="flight-leg-title"><span class="flight-leg-tag">回程 · 8/18</span>离开 Big Island (KOA)</div>
 
       <div class="flight-pax">
@@ -454,7 +455,7 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/AAL664" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=American%20Airlines%20AA664%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=AA%20664" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
@@ -468,7 +469,7 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Delta%20Air%20Lines%20DL486%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=DL%20486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
@@ -478,7 +479,7 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL4451" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Delta%20Air%20Lines%20DL4451%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=DL%204451" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
@@ -492,7 +493,7 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Delta%20Air%20Lines%20DL486%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=DL%20486" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
@@ -502,7 +503,7 @@
 
             <a class="flight-track-btn" href="https://flightaware.com/live/flight/DAL508" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">追踪航班 ↗</a>
 
-            <a class="flight-detail-btn" href="https://www.google.com/search?q=Delta%20Air%20Lines%20DL508%20flight%20status%20August%2018%202026" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
+            <a class="flight-detail-btn" href="https://www.google.com/search?q=DL%20508" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();window.open(this.href,'_blank','noopener,noreferrer');return false;">查看详情 ↗</a>
 
           </div>
         </div>
@@ -822,6 +823,7 @@ let activeIsland = 'oahu';
 let showHotels = false;
 let showRestaurants = false;
 let currentPage = 'plan';
+let activeFlightLeg = 0;
 
 function renderPageSwitch(){
   document.querySelectorAll('.page-btn').forEach(b=> b.classList.toggle('active', b.dataset.page===currentPage));
@@ -830,7 +832,13 @@ function renderPageSwitch(){
   document.querySelector('.reservation-section').style.display = isPlan ? '' : 'none';
   document.querySelector('.flight-section').style.display = isPlan ? 'none' : '';
   document.getElementById('viewSwitch').style.display = isPlan ? '' : 'none';
+  document.getElementById('flightLegTabs').style.display = isPlan ? 'none' : '';
   if(isPlan && map) setTimeout(()=> map.invalidateSize(), 50);
+}
+
+function renderFlightLegs(){
+  document.querySelectorAll('#flightLegTabs .view-btn').forEach(t=> t.classList.toggle('active', Number(t.dataset.leg)===activeFlightLeg));
+  document.querySelectorAll('.flight-leg').forEach(l=> l.style.display = Number(l.dataset.leg)===activeFlightLeg ? '' : 'none');
 }
 
 function initMap(){
@@ -857,8 +865,16 @@ function initMap(){
     renderPageSwitch();
   });
 
+  document.getElementById('flightLegTabs').addEventListener('click', (e)=>{
+    const btn = e.target.closest('.view-btn');
+    if(!btn) return;
+    activeFlightLeg = Number(btn.dataset.leg);
+    renderFlightLegs();
+  });
+
   render();
   renderPageSwitch();
+  renderFlightLegs();
   setTimeout(()=> map.invalidateSize(), 200);
   window.addEventListener('resize', ()=> map.invalidateSize());
 }
